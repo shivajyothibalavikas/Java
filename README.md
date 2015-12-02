@@ -1,2 +1,0 @@
-# Java
-Login Project
