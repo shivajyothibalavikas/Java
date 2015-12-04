@@ -8,4 +8,14 @@
     <servlet-name>reg</servlet-name>
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
+  
+  
+    <servlet>
+    <servlet-name>log</servlet-name>
+    <servlet-class>com.kenscio.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>log</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
 </web-app>
