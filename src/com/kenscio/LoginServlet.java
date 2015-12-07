@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 public class LoginServlet extends HttpServlet 
 {
 	Connection con = null;
@@ -31,22 +32,35 @@ public class LoginServlet extends HttpServlet
 				System.out.println("Exception" + e);
 			} 
 	}
+	
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
-		RequestDispatcher rd1 = request.getRequestDispatcher("Login/html/welcome.html"); 
+		RequestDispatcher rd1 = request.getRequestDispatcher("/jsp/Welcome.jsp"); 
+		RequestDispatcher rd2 = request.getRequestDispatcher("/html/login.html");
 		String name = request.getParameter("name");
 		String pass = request.getParameter("password");
 		String select_querry = "SELECT NAME,PASSWORD FROM CUSTOMER WHERE NAME='" + name +"';" ;
 		java.sql.Statement smt;
 		try 
 		{
+			ResultSet rs=null;
 			smt = con.createStatement();
-			ResultSet rs = smt.executeQuery(select_querry);
-			rs.next();
+			rs = smt.executeQuery(select_querry);
+			if(!(rs.next()))
+			{
+				System.out.println("mark");
+				pw.println("Invalid user!!! Plese try again");
+				rd2.include(request, response);
+			}
 			String dbpass = rs.getString(2);
-			if (pass.equalsIgnoreCase(dbpass)) {
+			if (pass.equalsIgnoreCase(dbpass)) 
+			{
+				HttpSession session = request.getSession();
+				session.setAttribute("name", name);
 				rd1.forward(request, response);
 			}
 			else
