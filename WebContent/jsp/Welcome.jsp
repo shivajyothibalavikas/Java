@@ -7,21 +7,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-html, body {
+html, body 
+{
 	height: 100%;
 	min-height: 100%;
 	margin: 0;
 	padding: 0;
 }
 
-li a {
+li a 
+{
 	display: block;
 	width: 180px;
 	text-decoration: none;
 	padding: 8px 0 8px 16px;
 }
 
-li a:hover {
+li a:hover 
+{
 	background-color: #555;
 	color: white;
 }
@@ -33,7 +36,8 @@ ul {
 	width: 200px;
 }
 
-#headder {
+#headder 
+{
 	background-color: black;
 	color: white;
 	text-align: center;
@@ -42,7 +46,8 @@ ul {
 	height: 100px;
 }
 
-#navbar {
+#navbar 
+{
 	line-height: 30px;
 	background-color: #eeeeee;
 	width: 200px;
@@ -51,7 +56,8 @@ ul {
 	padding: 5px;
 }
 
-#section {
+#section 
+{
 	width: 500px;
 	float: left;
 	padding: 10px;

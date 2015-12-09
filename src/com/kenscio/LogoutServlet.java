@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 public class LogoutServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
-		System.out.println("logout servlet is executing");
 		RequestDispatcher rd = req.getRequestDispatcher("/html/login.html");
 		HttpSession s = req.getSession();
 		s.invalidate();
