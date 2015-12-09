@@ -22,7 +22,6 @@ li a
 	text-decoration: none;
 	padding: 8px 0 8px 16px;
 }
-
 li a:hover 
 {
 	background-color: #555;
@@ -83,7 +82,7 @@ ul {
 	%>
 
 	<div id="section">
-		<form action="../logout" method="post">
+		<form action="../logout.do" method="post">
 			<h1>
 				Hello welcome
 				<%=usr %>
