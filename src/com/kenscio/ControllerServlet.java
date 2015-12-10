@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +17,9 @@ import javax.servlet.http.HttpSession;
 public class ControllerServlet extends HttpServlet {
 	Connection con = null;
 
-	public void init() throws ServletException {
-
+	public void init(ServletConfig conf) throws ServletException 
+	{
+		String connectionString = conf.getInitParameter("connectionString");
 		try {
 			con = DBConnect.getConnection();
 
@@ -48,7 +50,8 @@ public class ControllerServlet extends HttpServlet {
 				ResultSet rs = null;
 				smt = con.createStatement();
 				rs = smt.executeQuery(select_querry);
-				if (!(rs.next())) {
+				if (!(rs.next())) 
+				{
 					pw.println("<html>");
 					pw.println("<body>");
 					pw.println("<h1>Invalid user!!! Plese try again</h1><br>");
