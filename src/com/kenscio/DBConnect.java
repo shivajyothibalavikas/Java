@@ -11,7 +11,7 @@ public class DBConnect
 	{
 		Class.forName("com.mysql.jdbc.Driver");
 		System.out.println("driver loaded....");
-		con = DriverManager.getConnection("jdbc:mysql://localhost/Login","vikas", "sringeri1992");
+		con = DriverManager.getConnection("jdbc:mysql://localhost/Login","root", "madan007");
 		System.out.println("connected....");
 		return con;
 		

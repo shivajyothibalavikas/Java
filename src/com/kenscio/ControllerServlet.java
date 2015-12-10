@@ -40,21 +40,22 @@ public class ControllerServlet extends HttpServlet {
 			
 			resp.setContentType("text/html");
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/Welcome.jsp");
+			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error.html");
+			RequestDispatcher rd3 = req.getRequestDispatcher("/html/error2.html");
+	
 			String name = req.getParameter("name");
 			String pass = req.getParameter("password");
 			String select_querry = "SELECT NAME,PASSWORD FROM CUSTOMER WHERE NAME='" + name + "';";
+			
 			try {
-
+				
 				ResultSet rs = null;
 				smt = con.createStatement();
 				rs = smt.executeQuery(select_querry);
 				if (!(rs.next())) {
-					pw.println("<html>");
-					pw.println("<body>");
-					pw.println("<h1>Invalid user!!! Plese try again</h1><br>");
-					pw.println("<a href='html/login.html'>click here to login again</a>");
-					pw.println("</body>");
-					pw.println("</html>");
+					
+					rd2.forward(req, resp);
+				
 
 				} else {
 					String dbpass = rs.getString(2);
@@ -63,12 +64,9 @@ public class ControllerServlet extends HttpServlet {
 						session.setAttribute("name", name);
 						rd1.forward(req, resp);
 					} else {
-						pw.println("<html>");
-						pw.println("<body>");
-						pw.println("<h1> U have entered a wrong password.<br> please try again</h1><br>");
-						pw.println("<a href='html/login.html'>click here to login again </a>");
-						pw.println("</body>");
-						pw.println("</html>");
+						
+						rd3.forward(req, resp);
+						
 					}
 				}
 			} catch (SQLException e) {
@@ -85,7 +83,7 @@ public class ControllerServlet extends HttpServlet {
 			
 		} else if (strpath.equals("/register.do")) {						//register Servlet
 			
-			
+			RequestDispatcher rd4 = req.getRequestDispatcher("/html/success.html");
 			String name = req.getParameter("name");
 			String pass = req.getParameter("password");
 			String email = req.getParameter("email");
@@ -97,12 +95,7 @@ public class ControllerServlet extends HttpServlet {
 				smt = con.createStatement();
 				int result = smt.executeUpdate(querry);
 				if (result > 0) {
-					pw.println("<html>");
-					pw.println("<body>");
-					pw.println("<h1>User '" + name + "' successfully added to the database...</h1><br/>");
-					pw.println("<a href='html/login.html'>click here to login</a>");
-					pw.println("</body>");
-					pw.println("</html>");
+					rd4.forward(req,resp);
 				}
 			} catch (SQLException e) {
 				System.out.println("Exception" + e);
@@ -113,7 +106,7 @@ public class ControllerServlet extends HttpServlet {
 
 		} else if (strpath.equals("/logout.do")) {							//logout servlet
 			
-			RequestDispatcher rd = req.getRequestDispatcher("/html/login.html");
+			RequestDispatcher rd = req.getRequestDispatcher("html/login.html");
 			HttpSession s = req.getSession();
 			s.invalidate();
 			rd.forward(req, resp);
