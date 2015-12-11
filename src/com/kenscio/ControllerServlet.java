@@ -34,14 +34,11 @@ public class ControllerServlet extends HttpServlet {
 		String strpath = req.getServletPath();
 		java.sql.Statement smt = null;
 		PrintWriter pw = resp.getWriter();
-		System.out.println(strpath);
-		
-		
 		if (strpath.equals("/login.do")) {					//login servlet
 			
 			
 			resp.setContentType("text/html");
-			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/Welcome.jsp");
+			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error.html");
 			RequestDispatcher rd3 = req.getRequestDispatcher("/html/error2.html");
 	
@@ -61,7 +58,8 @@ public class ControllerServlet extends HttpServlet {
 				} else {
 					String dbpass = rs.getString(2);
 					if (pass.equalsIgnoreCase(dbpass)) {
-						HttpSession session = req.getSession();
+						
+						HttpSession session = req.getSession();   		//creating the new session
 						session.setAttribute("name", name);
 						rd1.forward(req, resp);
 					} else {

@@ -1,0 +1,98 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<style type="text/css">
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	width: 100%;
+	height: 100%;
+}
+
+#wrapper {
+	margin: 0;
+	width: 100%;
+}
+
+#header {
+	width: 100%;
+	color: #333;
+	padding: 10px;
+	border: 1px solid #ccc;
+	height: 100px;
+	margin: 0px 0px 0px 0px;
+	background: #DAC8BF;
+}
+
+#navigation {
+<	width: 100%;
+	color: #333;
+	padding: 10px;
+	border: 1px solid #ccc;
+	margin: 0px 0px 0px 0px;
+	background: #BD9C8C;
+}
+
+#content {
+	width: 100%;
+	color: #333;
+	border: 1px solid #ccc;
+	background: #F2F2E6;
+	margin: 0px 0px 0px 0px;
+	padding: 10px;
+	height: 350px;
+}
+
+#footer {
+	width: 100%;
+	color: #333;
+	border: 1px solid #ccc;
+	background: #BD9C8C;
+	margin: 0px 0px 0px 0px;
+	padding: 10px;
+}
+</style>
+</head>
+<body>
+
+
+	<!-- Begin Wrapper -->
+	<div id="wrapper">
+
+		<!-- Begin Header -->
+		<div id="header">
+			 <%@ include file="/html/headder.html"%>
+		</div>
+		<!-- End Header -->
+
+		<!-- Begin Naviagtion -->
+		<div id="navigation">
+		 <%@ include file="/html/navbar.html"%>
+		</div>
+		<!-- End Naviagtion -->
+
+		<!-- Begin Content -->
+		<div id="content">
+		<%@ include file="/jsp/welcomeUser.jsp"%>
+		</div>
+		<!-- End Content -->
+
+		<!-- Begin Footer -->
+		<div id="footer">
+		<%@ include file="/html/footer.html"%>
+		</div>
+		<!-- End Footer -->
+
+	</div>
+	<!-- End Wrapper -->
+
+</body>
+
+</html>
