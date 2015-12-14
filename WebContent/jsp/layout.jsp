@@ -8,6 +8,7 @@
 	padding: 0;
 	margin: 0;
 }
+<<<<<<< HEAD
 ul {
     list-style-type: none;
     margin: 0;
@@ -35,6 +36,9 @@ li a:hover:not(.active) {
 .active {
     background-color: #4CAF50;
 }
+=======
+
+>>>>>>> 1951563133dfe445a5d3cdfabc0aeaf0c9f559e7
 
 body {
 	font-family: Arial, Helvetica, sans-serif;
@@ -59,12 +63,12 @@ body {
 }
 
 #navigation {
-<	width: 100%;
+	width: 100%;
 	color: #333;
 	padding: 10px;
 	border: 1px solid #ccc;
 	margin: 0px 0px 0px 0px;
-	background: #BD9C8C;
+	background: black;
 }
 
 #content {
@@ -105,14 +109,11 @@ body {
 		
 
 		<!-- Begin Naviagtion -->
+		
 		<div id="navigation">
-		<ul>
-  		<li id="home"><a class="active" href="#home" onclick="load_home()">Home</a></li>
-  		<li id="news"><a href="#news" onclick="load_news()">News</a></li>
-  		<li id="contact"><a href="#contact" onclick="load_contact()">Contact</a></li>
- 		<li id="about"><a href="#about" onclick="load_about()">About</a></li>
-		</ul>
-		</div>
+		 <%@ include file="/jsp/navbar.jsp"%>
+		
+		</div> 
 		<!-- End Naviagtion -->
 		
 		
@@ -126,6 +127,14 @@ body {
 		 function load_home()
 		 {
 		 document.getElementById("content").innerHTML='<object type="text/html" data="html/about.html" ></object>';
+         }
+		 </script>
+		 
+		 
+		 <script>
+		 function load_welcome()
+		 {
+		 document.getElementById("content").innerHTML='<object type="text/html" data="html/logout.html" ></object>';
          }
 		 </script>
 		 

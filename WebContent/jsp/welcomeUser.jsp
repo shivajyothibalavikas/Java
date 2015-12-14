@@ -15,13 +15,9 @@
 		if (usr != null) {
 	%>
 
-		<form action="./logout.do" method="post">
-			<h1>
-				Hello welcome
-				<%=usr%>
-			</h1>
-			<input type="submit" value="Logout" />
-		</form>
+
+	<h1>Hello welcome
+	<%=usr%></h1>
 
 
 	<%
@@ -36,6 +32,5 @@
 	<%
 		}
 	%>
-	</form>
 </body>
 </html>

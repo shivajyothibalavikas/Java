@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kenscio.util.DBConnect;
+
 public class ControllerServlet extends HttpServlet {
 	Connection con = null;
 
@@ -31,7 +33,7 @@ public class ControllerServlet extends HttpServlet {
 	}
 
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String strpath = req.getServletPath();
+		String strpath = req.getServletPath();System.out.println(strpath);
 		java.sql.Statement smt = null;
 		PrintWriter pw = resp.getWriter();
 		if (strpath.equals("/login.do")) {					//login servlet
