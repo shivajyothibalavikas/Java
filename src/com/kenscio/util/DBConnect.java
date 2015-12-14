@@ -1,4 +1,4 @@
-package com.kenscio;
+package com.kenscio.util;
 
 import java.io.File;
 import java.io.FileReader;
