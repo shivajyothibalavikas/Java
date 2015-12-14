@@ -24,19 +24,19 @@ body {
 
 #header {
 	width: 100%;
-	color: #333;
+	color: white;
 	padding: 10px;
-	border: 1px solid #ccc;
+	border: 0;
 	height: 100px;
 	margin: 0px 0px 0px 0px;
-	background: #DAC8BF;
-}
+	background: black;
+}/* #DAC8BF */
 
 #navigation {
 	width: 100%;
 	color: #333;
 	padding: 10px;
-	border: 1px solid #ccc;
+	border: 0;
 	margin: 0px 0px 0px 0px;
 	background: black;
 }
@@ -44,7 +44,7 @@ body {
 #content {
 	width: 100%;
 	color: #333;
-	border: 1px solid #ccc;
+	border: 0;
 	background: #F2F2E6;
 	margin: 0px 0px 0px 0px;
 	padding: 10px;
@@ -53,9 +53,9 @@ body {
 
 #footer {
 	width: 100%;
-	color: #333;
-	border: 1px solid #ccc;
-	background: #BD9C8C;
+	color: black;
+	border: 0;
+	background: #D8D8D8;
 	margin: 0px 0px 0px 0px;
 	padding: 10px;
 }
