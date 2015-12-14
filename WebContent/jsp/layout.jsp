@@ -8,6 +8,33 @@
 	padding: 0;
 	margin: 0;
 }
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
 
 body {
 	font-family: Arial, Helvetica, sans-serif;
@@ -69,26 +96,72 @@ body {
 		<!-- Begin Header -->
 		<div id="header">
 			 <%@ include file="/html/headder.html"%>
+			
+			
 		</div>
 		<!-- End Header -->
+		
+		
+		
 
 		<!-- Begin Naviagtion -->
 		<div id="navigation">
-		 <%@ include file="/html/navbar.html"%>
+		<ul>
+  		<li id="home"><a class="active" href="#home" onclick="load_home()">Home</a></li>
+  		<li id="news"><a href="#news" onclick="load_news()">News</a></li>
+  		<li id="contact"><a href="#contact" onclick="load_contact()">Contact</a></li>
+ 		<li id="about"><a href="#about" onclick="load_about()">About</a></li>
+		</ul>
 		</div>
 		<!-- End Naviagtion -->
+		
+		
+		
 
 		<!-- Begin Content -->
 		<div id="content">
-		<%@ include file="/jsp/welcomeUser.jsp"%>
-		</div>
+		 <%@ include file="/jsp/welcomeUser.jsp"%>
+		 </div>
+		 <script>
+		 function load_home()
+		 {
+		 document.getElementById("content").innerHTML='<object type="text/html" data="html/about.html" ></object>';
+         }
+		 </script>
+		 
+		 <script>
+		 function load_news()
+		 {
+		 document.getElementById("content").innerHTML='<object type="text/html" data="html/news.html" ></object>';
+         }
+		 </script>
+		 
+		 <script>
+		 function load_contact()
+		 {
+		 document.getElementById("content").innerHTML='<object type="text/html" data="html/contact.html" ></object>';
+         }
+		 </script>
+		 
+		 <script>
+		 function load_about()
+		 {
+		 document.getElementById("content").innerHTML='<object type="text/html" data="html/about2.html" ></object>';
+         }
+		 </script>
+		 
 		<!-- End Content -->
-
+		
+		
+		
+		
 		<!-- Begin Footer -->
 		<div id="footer">
 		<%@ include file="/html/footer.html"%>
 		</div>
 		<!-- End Footer -->
+		
+		
 
 	</div>
 	<!-- End Wrapper -->
