@@ -8,37 +8,6 @@
 	padding: 0;
 	margin: 0;
 }
-<<<<<<< HEAD
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #F5A9A9;
-}
-
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover:not(.active) {
-    background-color: #4CAF50;
-}
-
-.active {
-    background-color: #4CAF50;
-}
-=======
-
->>>>>>> 1951563133dfe445a5d3cdfabc0aeaf0c9f559e7
 
 body {
 	font-family: Arial, Helvetica, sans-serif;
@@ -72,13 +41,13 @@ body {
 }
 
 #content {
-	width: 100%;
+	width:100%;
 	color: #333;
 	border: 0;
 	background: #F2F2E6;
 	margin: 0px 0px 0px 0px;
 	padding: 10px;
-	height: 350px;
+	height: 560px;
 }
 
 #footer {
@@ -126,7 +95,7 @@ body {
 		 <script>
 		 function load_home()
 		 {
-		 document.getElementById("content").innerHTML='<object type="text/html" data="html/about.html" ></object>';
+		 document.getElementById("content").innerHTML='<object type="text/html" width="100%" height="100%" data="html/about.html" ></object>';
          }
 		 </script>
 		 
@@ -134,28 +103,28 @@ body {
 		 <script>
 		 function load_welcome()
 		 {
-		 document.getElementById("content").innerHTML='<object type="text/html" data="html/logout.html" ></object>';
+		 document.getElementById("content").innerHTML='<object type="text/html" width="100%" height="100%" data="html/logout.html" ></object>';
          }
 		 </script>
 		 
 		 <script>
 		 function load_news()
 		 {
-		 document.getElementById("content").innerHTML='<object type="text/html" data="html/news.html" ></object>';
+		 document.getElementById("content").innerHTML='<object type="text/html" width="100%" height="100%" data="html/news.html" ></object>';
          }
 		 </script>
 		 
 		 <script>
 		 function load_contact()
 		 {
-		 document.getElementById("content").innerHTML='<object type="text/html" data="html/contact.html" ></object>';
+		 document.getElementById("content").innerHTML='<object type="text/html" width="100%" height="100%" data="html/contact.html" ></object>';
          }
 		 </script>
 		 
 		 <script>
 		 function load_about()
 		 {
-		 document.getElementById("content").innerHTML='<object type="text/html" data="html/about2.html" ></object>';
+		 document.getElementById("content").innerHTML='<object type="text/html"width="100%" height="100%" data="html/about2.html" ></object>';
          }
 		 </script>
 		 
