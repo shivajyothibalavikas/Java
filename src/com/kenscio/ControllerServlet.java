@@ -15,12 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kenscio.util.DBConnect;
+import com.kenscio.util.MD5;
 
 public class ControllerServlet extends HttpServlet {
 	Connection con = null;
 
 	public void init(ServletConfig conf) throws ServletException 
 	{
+		System.out.println("init executed");
 		String connectionString = conf.getInitParameter("connectionString");
 		try {
 			con = DBConnect.getConnection();
@@ -36,7 +38,7 @@ public class ControllerServlet extends HttpServlet {
 		String strpath = req.getServletPath();System.out.println(strpath);
 		java.sql.Statement smt = null;
 		PrintWriter pw = resp.getWriter();
-		if (strpath.equals("/login.do")) {					//login servlet
+		if (strpath.equals("/html/login.do")) {					//login servlet
 			
 			
 			resp.setContentType("text/html");
@@ -46,6 +48,7 @@ public class ControllerServlet extends HttpServlet {
 	
 			String name = req.getParameter("name");
 			String pass = req.getParameter("password");
+			String md5pass = MD5.getMD5(pass);
 			String select_querry = "SELECT NAME,PASSWORD FROM CUSTOMER WHERE NAME='" + name + "';";
 			
 			try {
@@ -59,13 +62,12 @@ public class ControllerServlet extends HttpServlet {
 
 				} else {
 					String dbpass = rs.getString(2);
-					if (pass.equalsIgnoreCase(dbpass)) {
+					if (md5pass.equals(dbpass)) {
 						
 						HttpSession session = req.getSession();   		//creating the new session
 						session.setAttribute("name", name);
 						rd1.forward(req, resp);
 					} else {
-						
 						rd3.forward(req, resp);
 						
 					}
@@ -82,7 +84,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 			
 			
-		} else if (strpath.equals("/register.do")) {						//register Servlet
+		} else if (strpath.equals("/html/register.do")) {						//register Servlet
 			
 			RequestDispatcher rd4 = req.getRequestDispatcher("/html/success.html");
 			String name = req.getParameter("name");
@@ -90,8 +92,9 @@ public class ControllerServlet extends HttpServlet {
 			String email = req.getParameter("email");
 			String phone = req.getParameter("phone");
 			String gender = req.getParameter("gender");
+			String md5pass = MD5.getMD5(pass);
 			String querry = "INSERT INTO CUSTOMER(NAME,PASSWORD,EMAIL,PHONENO,GENDER)VALUES(" + "'" + name + "','"
-					+ pass + "','" + email + "'," + phone + ",'" + gender + "');";
+					+ md5pass + "','" + email + "'," + phone + ",'" + gender + "');";
 			try {
 				smt = con.createStatement();
 				int result = smt.executeUpdate(querry);
@@ -101,13 +104,11 @@ public class ControllerServlet extends HttpServlet {
 			} catch (SQLException e) {
 				System.out.println("Exception" + e);
 			}
-			
-			
-			
+	
 
-		} else if (strpath.equals("/logout.do")) {							//logout servlet
+		} else if (strpath.equals("/html/logout.do")) {							//logout servlet
 			
-			RequestDispatcher rd = req.getRequestDispatcher("html/login.html");
+			RequestDispatcher rd = req.getRequestDispatcher("/html/login.html");
 			HttpSession s = req.getSession();
 			s.invalidate();
 			rd.forward(req, resp);
