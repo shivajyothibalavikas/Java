@@ -38,7 +38,9 @@ public class ControllerServlet extends HttpServlet {
 		PrintWriter pw = resp.getWriter();
 		if (strpath.equals("/html/login.do")) 
 		{ 																									// login servlet
-
+			
+			
+            System.out.println("1");
 			resp.setContentType("text/html");
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error.html");
