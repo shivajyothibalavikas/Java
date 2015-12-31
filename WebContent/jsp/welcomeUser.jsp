@@ -26,7 +26,7 @@
 
 
 	<h1>Session expired Please try later</h1>
-	<a href="/login.do">Click here to login again</a>
+	<a href="/Login/html/login.html">Click here to login again</a>
 
 
 	<%
