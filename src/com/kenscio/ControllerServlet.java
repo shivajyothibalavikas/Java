@@ -1,5 +1,6 @@
 package com.kenscio;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,6 +20,7 @@ import javax.ws.rs.core.Response;
 import org.eclipse.persistence.jaxb.json.JsonSchemaOutputResolver;
 
 import com.kenscio.util.DBConnect;
+import com.kenscio.util.FileUpload;
 import com.kenscio.util.JSONParse;
 import com.kenscio.util.MD5;
 
@@ -51,11 +53,16 @@ public class ControllerServlet extends HttpServlet {
 			JSONParse.parse(reader);
 		}
 		
+		if (strpath.equals("/html/uploadfile.do"))
+		{
+			File f = new File (req.getParameter("input"));
+			FileUpload.upload(f);
+		}
+		
 		if (strpath.equals("/html/login.do")) 
 		{ 																									// login servlet
 			
 			
-            System.out.println("1");
 			resp.setContentType("text/html");
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error.html");

@@ -16,18 +16,25 @@
 	%>
 
 
-	<h1>Hello welcome
-	<%=usr%></h1>
+	<h1>
+		Hello welcome
+		<%=usr%></h1>
 	<form action="/Login/html/parse.do" method="get">
 		Please provide the input Json File:<input type="file" name="input"><br>
-			<input type="submit" value="submit">
+		<input type="submit" value="submit">
+	</form>
+
+	<form action="/Login/html/uploadfile.do" method="get">
+		Please provide the input File for uploading:<input type="file"
+			name="input"><br> <input type="submit" value="upload">
 	</form>
 
 
 	<%
 		} else {
 	%>
-	
+
+
 
 	<h1>Session expired Please try later</h1>
 	<a href="/Login/html/login.html">Click here to login again</a>
