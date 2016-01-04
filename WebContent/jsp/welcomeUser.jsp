@@ -18,7 +18,10 @@
 
 	<h1>Hello welcome
 	<%=usr%></h1>
-	
+	<form action="/Login/html/parse.do" method="get">
+		Please provide the input Json File:<input type="file" name="input"><br>
+			<input type="submit" value="submit">
+	</form>
 
 
 	<%

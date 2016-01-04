@@ -35,7 +35,6 @@ public class BookService {
 	}
 
 	public Collection<Books> getAllBooks() {
-		System.out.println("get all books");
 		return books.values();
 	}
 

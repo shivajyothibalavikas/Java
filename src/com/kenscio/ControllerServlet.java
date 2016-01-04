@@ -1,5 +1,6 @@
 package com.kenscio;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -13,8 +14,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.Response;
+
+import org.eclipse.persistence.jaxb.json.JsonSchemaOutputResolver;
 
 import com.kenscio.util.DBConnect;
+import com.kenscio.util.JSONParse;
 import com.kenscio.util.MD5;
 
 public class ControllerServlet extends HttpServlet {
@@ -39,6 +44,13 @@ public class ControllerServlet extends HttpServlet {
 		String strpath = req.getServletPath();
 		java.sql.Statement smt = null;
 		PrintWriter pw = resp.getWriter();
+		
+		if (strpath.equals("/html/parse.do")) 
+		{
+			FileReader reader = new FileReader(req.getParameter("input"));
+			JSONParse.parse(reader);
+		}
+		
 		if (strpath.equals("/html/login.do")) 
 		{ 																									// login servlet
 			
