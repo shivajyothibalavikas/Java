@@ -14,9 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.core.Response;
 
-import org.eclipse.persistence.jaxb.json.JsonSchemaOutputResolver;
 
 import com.kenscio.util.DBConnect;
 import com.kenscio.util.JSONParse;
@@ -45,17 +43,19 @@ public class ControllerServlet extends HttpServlet {
 		java.sql.Statement smt = null;
 		PrintWriter pw = resp.getWriter();
 		
-		if (strpath.equals("/html/parse.do")) 
+		if (strpath.equals("/html/parse.do")) 					
 		{
+			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			FileReader reader = new FileReader(req.getParameter("input"));
-			JSONParse.parse(reader);
+			StringBuffer json = JSONParse.parse(reader);
+			req.setAttribute("json", json);
+			rd1.forward(req, resp);
 		}
 		
 		if (strpath.equals("/html/login.do")) 
 		{ 																									// login servlet
 			
 			
-            System.out.println("1");
 			resp.setContentType("text/html");
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error.html");
@@ -99,7 +99,9 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}
 
-		} else if (strpath.equals("/html/register.do")) { // register Servlet
+		} 
+		else if (strpath.equals("/html/register.do")) 
+		{ // register Servlet
 
 			RequestDispatcher rd4 = req.getRequestDispatcher("/html/success.html");
 			String name = req.getParameter("name");
