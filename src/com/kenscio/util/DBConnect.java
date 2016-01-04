@@ -16,6 +16,7 @@ public class DBConnect {
 		try 
 		{
 			String currentdir = new File("").getAbsolutePath();
+			System.out.println(currentdir);
 			File configFile = new File(currentdir+"/Java/properties/DBConnect.properties");
 			Properties props = new Properties();
 			FileReader reader = new FileReader(configFile);
