@@ -18,6 +18,10 @@ import com.kenscio.util.DBConnect;
 import com.kenscio.util.MD5;
 
 public class ControllerServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Connection con = null;
 
 	public void init(ServletConfig conf) throws ServletException {

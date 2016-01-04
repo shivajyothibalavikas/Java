@@ -12,6 +12,10 @@
 			<param-value>com.kenscio.resources</param-value>
 		</init-param>
 	</servlet>
+	<servlet-mapping>
+		<servlet-name>Jersey Web Application</servlet-name>
+		<url-pattern>/webapi/*</url-pattern>
+	</servlet-mapping>
 
 	<welcome-file-list>
 		<welcome-file>html/welcome.html</welcome-file>
@@ -42,7 +46,6 @@
 		<web-resource-collection>
 			<web-resource-name>test</web-resource-name>
 			<url-pattern>/webapi/*</url-pattern>
-			<!-- <http-method>GET</http-method> -->
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>admin</role-name>

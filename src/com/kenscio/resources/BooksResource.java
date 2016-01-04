@@ -15,18 +15,16 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.kenscio.to.Books;
-import com.kenscio.to.ConnectionTo;
 import com.kenscio.service.BookService;
 
 @Path("books")
-public class MyResource {
+public class BooksResource {
 
 	BookService service = new BookService();
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<Books> getAll(@QueryParam("category") String category) {
-		System.out.println("Entered resorce");
 
 		if (category != null) {
 			return service.getBookByCategory(category);
@@ -53,16 +51,6 @@ public class MyResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response addBook(Books book) throws URISyntaxException {
 		return service.addBook(book);
-	}
-
-	@Path("connect")
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String getIt(ConnectionTo con) {
-
-		return service.getConnection(con);
-
 	}
 
 }
