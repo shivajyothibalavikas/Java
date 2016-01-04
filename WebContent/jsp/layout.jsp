@@ -5,7 +5,7 @@
 <head>
 <script>
 	function load_home() {
-		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/html/about.html" ></object>';
+		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/welcomeUser.jsp"></object>';
 	}
 
 	function load_welcome() {
