@@ -25,6 +25,7 @@ public class MyResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<Books> getAll(@QueryParam("category") String category) 
     {
+    	System.out.println("Entered resorce");
     	if(category!= null)
     	{
     		return service.getBookByCategory(category);
@@ -55,7 +56,5 @@ public class MyResource {
     {
     	return service.deleteBook(bookid); 
     }
-    
-   
-    
+      
 }

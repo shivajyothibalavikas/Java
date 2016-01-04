@@ -13,21 +13,17 @@ public class Filter1 implements Filter {
 
 	@Override
 	public void destroy() {
-		System.out.println("Destroyed");
 	}
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain fc)
 			throws IOException, ServletException {
-		System.out.println("inside begin doFilter");
 		fc.doFilter(req, resp);
-		System.out.println("inside end do filter");
 		
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		System.out.println("inside init of filter");
 		
 	}
 

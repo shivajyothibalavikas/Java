@@ -35,7 +35,7 @@ public class DatabaseClass
 	public static Map<Long, Books> getBook()										//Getting all the books
 	{
 
-		
+		System.out.println("entered database class getbook");
 		final String select_all_book_querry = "SELECT * FROM BOOKS;";
 		Map<Long,Books> books = new HashMap<>();
 		try 

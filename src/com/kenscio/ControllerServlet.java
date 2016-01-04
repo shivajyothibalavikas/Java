@@ -33,7 +33,6 @@ public class ControllerServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String strpath = req.getServletPath();
-		System.out.println(strpath);
 		java.sql.Statement smt = null;
 		PrintWriter pw = resp.getWriter();
 		if (strpath.equals("/html/login.do")) 
