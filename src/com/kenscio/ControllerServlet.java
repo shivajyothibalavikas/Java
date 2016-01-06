@@ -44,6 +44,7 @@ public class ControllerServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String strpath = req.getServletPath();
+		System.out.println(strpath);
 		java.sql.Statement smt = null;
 		PrintWriter pw = resp.getWriter();
 		
@@ -53,18 +54,39 @@ public class ControllerServlet extends HttpServlet {
 			JSONParse.parse(reader);
 		}
 		
-		if (strpath.equals("/html/uploadfile.do"))
+		else if (strpath.equals("/html/uploadfile.do"))
 		{
+			resp.setContentType("text/html");
+			Boolean flag;
+			Boolean result;
 			File f = new File (req.getParameter("input"));
-			FileUpload.upload(f);
+			flag = FileUpload.upload(f);
+			if(flag == true)
+			{
+				result = true;
+				req.setAttribute("result", result);
+				pw.println("Upload successfull");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/layout.jsp");
+				dispatcher.include(req, resp);
+			}
+			else
+			{
+				result = false;
+				req.setAttribute("result", result);
+				pw.println("Upload Failed");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/layout.jsp");
+				dispatcher.forward(req, resp);
+			}
 		}
 		
-		if (strpath.equals("/html/login.do")) 
+		else if (strpath.equals("/html/login.do")) 
 		{ 																									// login servlet
 			
-			
 			resp.setContentType("text/html");
+			//System.out.println("2");
+			RequestDispatcher rd0 = req.getRequestDispatcher("/jsp/layout.jsp");
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
+			//System.out.println("3");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error.html");
 			RequestDispatcher rd3 = req.getRequestDispatcher("/html/error2.html");
 
@@ -74,7 +96,7 @@ public class ControllerServlet extends HttpServlet {
 			String select_querry = "SELECT NAME,PASSWORD FROM CUSTOMER WHERE NAME='" + name + "';";
 
 			try {
-
+				System.out.println("db");
 				ResultSet rs = null;
 				smt = con.createStatement();
 				rs = smt.executeQuery(select_querry);
@@ -84,12 +106,15 @@ public class ControllerServlet extends HttpServlet {
 
 				} else {
 					String dbpass = rs.getString(2);
+					System.out.println(dbpass);
 					if (md5pass.equals(dbpass)) {
 
 						HttpSession session = req.getSession(); // creating the
 																// new session
 						session.setAttribute("name", name);
-						rd1.forward(req, resp);
+						System.out.println("4");
+						rd0.forward(req, resp);
+						System.out.println("5");
 					} else {
 						rd3.forward(req, resp);
 
