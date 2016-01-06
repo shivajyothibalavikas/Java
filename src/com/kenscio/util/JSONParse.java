@@ -9,51 +9,53 @@ import javax.json.stream.JsonParser.Event;
 public class JSONParse 
 {
 
-	public static void parse(FileReader reader) 
+	public static StringBuffer parse(FileReader reader) 
 	{
+		StringBuffer sb = new StringBuffer();
 		JsonParser parser = Json.createParser(reader);
 		while (parser.hasNext()) {
 			switch (parser.next()) {
 			case START_OBJECT:
-				System.out.print("{\n");
+				sb.append("{\n");
 				break;
 			case END_OBJECT:
-				System.out.print("\n}");
+				sb.append("\n}");
 				break;
 			case END_ARRAY:
-				System.out.print("]");
+				sb.append("]");
 				break;
 			case VALUE_NUMBER:
-				System.out.print(parser.getInt() + ",");
+				sb.append(parser.getInt() + ",");
 				break;
 			case KEY_NAME:
 				System.out.print(parser.getString() + ":");
 				Event event = parser.next();
 				if (event == Event.VALUE_TRUE) {
-					System.out.print("true\n");
+					sb.append("true\n");
 					break;
 				} else if (event == Event.START_OBJECT) {
-					System.out.print("{\n");
+					sb.append("{\n");
 					break;
 				} else if (event == Event.VALUE_FALSE) {
-					System.out.print("false\n");
+					sb.append("false\n");
 					break;
 				} else if (event == Event.VALUE_STRING) {
-					System.out.print(parser.getString() + "\n");
+					sb.append(parser.getString() + "\n");
 					break;
 				} else if (event == Event.VALUE_NUMBER) {
-					System.out.print(parser.getInt() + "\n");
+					sb.append(parser.getInt() + "\n");
 					break;
 				} else if (event == Event.START_ARRAY) {
-					System.out.print("[");
+					sb.append("[");
 					break;
 				} else if (event == Event.END_ARRAY) {
-					System.out.print("]");
+					sb.append("]");
 					break;
 				}
 			default:
 				break;
 			}
 		}
+		return sb;
 	}
 }
