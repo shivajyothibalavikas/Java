@@ -1,8 +1,27 @@
+<%@ page import="com.kenscio.to.Books"%>
+<%@ page import="com.kenscio.util.FetchDataFromDb"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="css/demo_page.css" rel="stylesheet" type="text/css" />
+<link href="css/demo_table.css" rel="stylesheet" type="text/css" />
+<link href="css/demo_table_jui.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery-ui-1.8.24.custom.css" rel="stylesheet"
+	type="text/css" media="all" />
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/jquery.dataTables.js" type="text/javascript"></script>
+<script>
+	$(document).ready(function() {
+		$("#companies").dataTable({
+			"sPaginationType" : "full_numbers",
+			"bJQueryUI" : true
+		});
+	});
+</script>
 <script>
 	function load_home() {
 		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/welcomeUser.jsp"></object>';
@@ -114,7 +133,7 @@ body {
 
 		<!-- Begin Content -->
 		<div id="content">
-			<%@ include file="/jsp/welcomeUser.jsp" %>
+			<%@ include file="/jsp/welcomeUser.jsp"%>
 		</div>
 		<!-- End Content -->
 
