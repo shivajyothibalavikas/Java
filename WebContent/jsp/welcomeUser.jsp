@@ -27,8 +27,6 @@
 	<div id="textarea">
 		<textarea rows="20" cols="70"><%=request.getAttribute("json") %></textarea>
 	</div>
-
-
 	<%}%>
 	</form>
 	<form action="/Login/html/uploadfile.do" method="post">
@@ -39,10 +37,10 @@
 
 	
 		<% }
+
 		else
 		{
 	%>
-
 
 
 	<h1>Session expired Please try later</h1>
