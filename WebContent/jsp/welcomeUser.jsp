@@ -5,46 +5,72 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.ar {
+	width: 105px;
+	height: 20px;
+	line-height: 20px;
+	padding-bottom: 2px;
+	vertical-align: middle;
+	font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica,
+		sans-serif;
+	font-size: 18px;
+	text-transform: none;
+	border: 1px solid transparent;
+	color: green;
+}
+</style>
+
 </head>
 <body>
 	<%
 		String usr = null;
 		session = request.getSession();
 		usr = (String) session.getAttribute("name");
-		if (usr != null)
-		{
-			
+		if (usr != null) {
 	%>
 
 
 	<h1>
 		Hello welcome
 		<%=usr%></h1>
-	<form action="/Login/html/parse.do" method="get">
-		Please provide the input Json File:<input type="file" name="input"><br>
-		<input type="submit" value="submit">
-	
-	<%if(request.getAttribute("json")!=null)
-	{ 
-	%>
-	<div id="textarea">
-		<textarea rows="20" cols="70"><%=request.getAttribute("json") %></textarea>
-	</div>
+		<br/>
+		<br/>
+
+	<form>
+		<font size="3" color="red">Click here to view the book catalog:</font><a
+			class="ar" href="/Login/jsp/display.jsp">View</a>
 	</form>
+	<br />
+	<br />
 
 	<form action="/Login/html/uploadfile.do" method="post">
 		Please provide the input File for uploading:<input type="file"
 			name="input"><br> <input type="submit" value="upload">
 		<p id="demo"></p>
 	</form>
+	<br />
+	<br />
+
+
+	<form action="/Login/html/parse.do" method="get">
+		Please provide the input Json File:<input type="file" name="input"><br>
+		<input type="submit" value="submit">
+
+		<%
+			if (request.getAttribute("json") != null) {
+		%>
+		<div id="textarea">
+			<textarea rows="20" cols="70"><%=request.getAttribute("json")%></textarea>
+		</div>
+	</form>
+	<br />
 
 
 	<%
-	}
-		
-	} 
-		else
-		{
+		}
+
+		} else {
 	%>
 
 
@@ -54,9 +80,7 @@
 
 	<%
 		}
-		
 	%>
-	</form>
 
 </body>
 </html>

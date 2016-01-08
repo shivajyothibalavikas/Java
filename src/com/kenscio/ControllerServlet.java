@@ -80,13 +80,20 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
+		/*else if(strpath.equals("/html/displaycatalog.do"))
+		{
+			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/display.jsp");
+			rd1.forward(req, resp);
+			
+		}*/
+		
 		else if (strpath.equals("/html/login.do")) 
 		{ 																									// login servlet
 			
 			resp.setContentType("text/html");
 			//System.out.println("2");
 			RequestDispatcher rd0 = req.getRequestDispatcher("/jsp/layout.jsp");
-			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
+			//RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			//System.out.println("3");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error.html");
 			RequestDispatcher rd3 = req.getRequestDispatcher("/html/error2.html");

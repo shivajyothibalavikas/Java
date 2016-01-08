@@ -41,6 +41,7 @@ li a:hover:not(.active) {
 		<li id="news"><a href="#news" onclick="load_news()">News</a></li>
 		<li id="contact"><a href="#contact" onclick="load_contact()">Contact</a></li>
 		<li id="about"><a href="#about" onclick="load_about()">About</a></li>
+		<li id="view"><a href="#view" onclick="load_view()">View</a></li>
 	</ul>
 </body>
 </html>
