@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.ar {
+.button {
 	width: 105px;
 	height: 20px;
 	line-height: 20px;
@@ -14,7 +14,7 @@
 	vertical-align: middle;
 	font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica,
 		sans-serif;
-	font-size: 18px;
+	font-size: 13px;
 	text-transform: none;
 	border: 1px solid transparent;
 	color: green;
@@ -34,12 +34,9 @@
 	<h1>
 		Hello welcome
 		<%=usr%></h1>
-		<br/>
-		<br/>
 
 	<form>
-		<font size="3" color="red">Click here to view the book catalog:</font><a
-			class="ar" href="/Login/jsp/display.jsp">View</a>
+		Click here to view the book catalog:<a href="/Login/jsp/display.jsp">View</a>
 	</form>
 	<br />
 	<br />

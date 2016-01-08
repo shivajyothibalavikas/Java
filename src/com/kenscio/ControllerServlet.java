@@ -89,12 +89,13 @@ public class ControllerServlet extends HttpServlet {
 		
 		else if (strpath.equals("/html/login.do")) 
 		{ 																									// login servlet
-			
 			resp.setContentType("text/html");
+
 			//System.out.println("2");
 			RequestDispatcher rd0 = req.getRequestDispatcher("/jsp/layout.jsp");
 			//RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			//System.out.println("3");
+			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error.html");
 			RequestDispatcher rd3 = req.getRequestDispatcher("/html/error2.html");
 
@@ -104,7 +105,6 @@ public class ControllerServlet extends HttpServlet {
 			String select_querry = "SELECT NAME,PASSWORD FROM CUSTOMER WHERE NAME='" + name + "';";
 
 			try {
-				System.out.println("db");
 				ResultSet rs = null;
 				smt = con.createStatement();
 				rs = smt.executeQuery(select_querry);
@@ -114,15 +114,12 @@ public class ControllerServlet extends HttpServlet {
 
 				} else {
 					String dbpass = rs.getString(2);
-					System.out.println(dbpass);
 					if (md5pass.equals(dbpass)) {
 
 						HttpSession session = req.getSession(); // creating the
 																// new session
 						session.setAttribute("name", name);
-						System.out.println("4");
-						rd0.forward(req, resp);
-						System.out.println("5");
+						rd1.forward(req, resp);
 					} else {
 						rd3.forward(req, resp);
 
@@ -135,7 +132,7 @@ public class ControllerServlet extends HttpServlet {
 					pw.close();
 					smt.close();
 				} catch (SQLException e) {
-					System.out.println("Error whControllerServletile closing statement object\n + e");
+					System.out.println("Error whControllerServletile closing statement object" + e);
 				}
 			}
 

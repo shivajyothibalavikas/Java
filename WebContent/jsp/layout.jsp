@@ -114,7 +114,7 @@ body {
 
 		<!-- Begin Content -->
 		<div id="content">
-			<%@ include file="/jsp/welcomeUser.jsp"%>
+			<%@ include file="/jsp/welcomeUser.jsp" %>
 		</div>
 		<!-- End Content -->
 
