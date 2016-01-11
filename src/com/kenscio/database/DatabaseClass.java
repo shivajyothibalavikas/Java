@@ -115,14 +115,7 @@ public class DatabaseClass
 		} catch (SQLException e) {
 			System.out.println("Exception" + e);
 		} 
-		finally 
-		{
-			try {
-				smt.close();
-			} catch (SQLException e) {
-				System.out.println("Error whControllerServletile closing statement object" + e);
-			}
-		}
+		
 		return user;
 
 	}
