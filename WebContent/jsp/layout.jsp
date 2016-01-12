@@ -6,23 +6,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="css/demo_page.css" rel="stylesheet" type="text/css" />
-<link href="css/demo_table.css" rel="stylesheet" type="text/css" />
-<link href="css/demo_table_jui.css" rel="stylesheet" type="text/css" />
-<link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
-<link href="css/jquery-ui-1.8.24.custom.css" rel="stylesheet"
-	type="text/css" media="all" />
-<script src="js/jquery.js" type="text/javascript"></script>
-<script src="js/jquery.dataTables.js" type="text/javascript"></script>
 <script>
-	$(document).ready(function() {
-		$("#companies").dataTable({
-			"sPaginationType" : "full_numbers",
-			"bJQueryUI" : true
-		});
-	});
-</script>
-<script>
+	function load_view() {
+		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/display.jsp" ></object>';
+	}
 	function load_home() {
 		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/welcomeUser.jsp"></object>';
 	}
@@ -43,10 +30,11 @@
 		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/html/about2.html" ></object>';
 
 		function load_view() {
-			document.getElementById("view").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/display.jsp" ></object>';
+			document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/html/view.html" ></object>';
 		}
 	}
 </script>
+
 <style type="text/css">
 * {
 	padding: 0;

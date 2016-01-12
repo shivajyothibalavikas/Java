@@ -35,12 +35,8 @@
 		Hello welcome
 		<%=usr%></h1>
 		<br/>
-		<br/>
-		<br/>
 
-	<form>
 		<font size="3" color="red">Click here to view the book catalog:</font><a href="/Login/jsp/display.jsp"><font size="3" color="green">View</font></a>
-	</form>
 	<br />
 	<br />
 
