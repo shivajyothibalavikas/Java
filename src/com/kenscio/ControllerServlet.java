@@ -24,9 +24,7 @@ import com.kenscio.util.JSONParse;
 import com.kenscio.util.MD5;
 
 public class ControllerServlet extends HttpServlet {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	Connection con = null;
 
@@ -88,10 +86,7 @@ public class ControllerServlet extends HttpServlet {
 		{ 																									// login servlet
 			resp.setContentType("text/html");
 
-			//System.out.println("2");
 			RequestDispatcher rd0 = req.getRequestDispatcher("/jsp/layout.jsp");
-			//RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
-			//System.out.println("3");
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error.html");
 			RequestDispatcher rd3 = req.getRequestDispatcher("/html/error2.html");
