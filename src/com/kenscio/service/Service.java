@@ -20,7 +20,7 @@ import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 import com.kenscio.database.DatabaseClass;
 
-public class BookService {
+public class Service {
 
 	private Map<Long, Books> books = DatabaseClass.getBook();
 

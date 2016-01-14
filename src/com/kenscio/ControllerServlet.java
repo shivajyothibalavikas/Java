@@ -83,14 +83,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
-		/*else if(strpath.equals("/html/displaycatalog.do"))
-		{
-			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/display.jsp");
-			rd1.forward(req, resp);
-			
-		}*/
-		
-		
+				
 		/*For login checking*/
 		
 		else if (strpath.equals("/html/login.do")) 

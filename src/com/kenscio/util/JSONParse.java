@@ -4,7 +4,6 @@ import java.io.FileReader;
 
 import javax.json.Json;
 import javax.json.stream.JsonParser;
-import javax.json.stream.JsonParser.Event;
 
 public class JSONParse {
 

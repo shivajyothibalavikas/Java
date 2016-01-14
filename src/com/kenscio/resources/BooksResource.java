@@ -15,13 +15,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.kenscio.to.Books;
-import com.kenscio.service.BookService;
+import com.kenscio.service.Service;
 
 @Path("books")
 public class BooksResource 
 {
 
-	BookService service = new BookService();
+	Service service = new Service();
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

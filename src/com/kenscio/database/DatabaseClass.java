@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
 import com.kenscio.to.Books;
 import com.kenscio.util.DBConnect;

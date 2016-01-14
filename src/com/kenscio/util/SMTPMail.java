@@ -22,7 +22,7 @@ public class SMTPMail
 		String currentdir = new File("").getAbsolutePath();
 		final String from = "vikky.kv@gmail.com";
 		final String host = "smtp.gmail.com";
-		File configFile = new File(currentdir+"/SFTPUsingRest/properties/passwords.properties");
+		File configFile = new File(currentdir+"/Java/properties/passwords.properties");
 		Properties props = new Properties();
 		
 		try {

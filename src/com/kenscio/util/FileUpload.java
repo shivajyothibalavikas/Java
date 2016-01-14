@@ -2,10 +2,8 @@ package com.kenscio.util;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Properties;
 
 import com.jcraft.jsch.Channel;
