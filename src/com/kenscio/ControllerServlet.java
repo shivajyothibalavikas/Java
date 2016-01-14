@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -43,7 +42,6 @@ public class ControllerServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String strpath = req.getServletPath();
 		System.out.println(strpath);
-		java.sql.Statement smt = null;
 		PrintWriter pw = resp.getWriter();
 		
 		if (strpath.equals("/html/parse.do")) 					

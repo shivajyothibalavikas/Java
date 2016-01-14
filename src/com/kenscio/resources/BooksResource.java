@@ -18,7 +18,8 @@ import com.kenscio.to.Books;
 import com.kenscio.service.BookService;
 
 @Path("books")
-public class BooksResource {
+public class BooksResource 
+{
 
 	BookService service = new BookService();
 
