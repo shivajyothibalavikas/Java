@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 
 import com.kenscio.to.Books;
 import com.kenscio.util.DBConnect;
@@ -33,7 +34,7 @@ public class DatabaseClass
 	}
 	
 	
-	public static Map<Long, Books> getBook()										//Getting all the books
+	public static Map<Long, Books> getBook()										
 	{
 
 		final String select_all_book_querry = "SELECT * FROM BOOKS;";
@@ -92,4 +93,52 @@ public class DatabaseClass
 			System.out.println("Exception" + e);
 		}
 	}
+
+	public static boolean loginCheck(String name, String md5_of_pass) 
+	{
+		boolean user = false;
+		String select_querry = "SELECT NAME,PASSWORD FROM CUSTOMER WHERE NAME='" + name + "';";
+		try 
+		{
+			smt = con.createStatement();
+			rs = smt.executeQuery(select_querry);
+			if (rs.next()) 
+			{
+				String dbpass = rs.getString(2);
+				if (md5_of_pass.equals(dbpass)) 
+				{
+					user = true;
+				} 
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Exception" + e);
+		} 
+		
+		return user;
+
+	}
+
+	public static boolean registerUser(String name, String md5_of_pass, String email, String phone, String gender) 
+	{
+		boolean reg = false;
+		String querry = "INSERT INTO CUSTOMER(NAME,PASSWORD,EMAIL,PHONENO,GENDER)VALUES(" + "'" + name + "','"
+				+ md5_of_pass + "','" + email + "'," + phone + ",'" + gender + "');";
+		try 
+		{
+			smt = con.createStatement();
+			int result = smt.executeUpdate(querry);
+			if (result > 0) 
+			{
+				reg= true;
+			}
+		} catch (SQLException e) {
+			System.out.println("Exception" + e);
+		}
+		return reg;
+	} 
+	
+		
+	
 }
