@@ -5,7 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -15,14 +17,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kenscio.database.DatabaseClass;
+
 import com.kenscio.util.DBConnect;
 import com.kenscio.util.FileUpload;
 import com.kenscio.util.JSONParse;
 import com.kenscio.util.MD5;
 
 public class ControllerServlet extends HttpServlet {
-
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	Connection con = null;
 
@@ -37,14 +41,10 @@ public class ControllerServlet extends HttpServlet {
 		}
 	}
 
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
-	{
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String strpath = req.getServletPath();
 		System.out.println(strpath);
 		PrintWriter pw = resp.getWriter();
-		
-		
-		/*for parsing the given json file*/
 		
 		if (strpath.equals("/html/parse.do")) 					
 		{
@@ -54,9 +54,6 @@ public class ControllerServlet extends HttpServlet {
 			req.setAttribute("json", json);
 			rd1.forward(req, resp);
 		}
-		
-		
-		/*for uploading the file to the remote server*/ 
 		
 		else if (strpath.equals("/html/uploadfile.do"))
 		{
@@ -85,34 +82,55 @@ public class ControllerServlet extends HttpServlet {
 		
 				
 		/*For login checking*/
+
 		
 		else if (strpath.equals("/html/login.do")) 
-		{ 																									
+		{ 																									// login servlet
 			resp.setContentType("text/html");
 
+			//System.out.println("2");
+			RequestDispatcher rd0 = req.getRequestDispatcher("/jsp/layout.jsp");
+			//RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
+			//System.out.println("3");
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
-			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error2.html");
+			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error.html");
+			RequestDispatcher rd3 = req.getRequestDispatcher("/html/error2.html");
 
 			String name = req.getParameter("name");
-			String user_entered_pass = req.getParameter("password");
-			String md5_of_pass = MD5.getMD5(user_entered_pass);
-			boolean user = DatabaseClass.loginCheck(name,md5_of_pass);
-			if(user == true)
-			{
-				HttpSession session = req.getSession(); 
-				session.setAttribute("name", name);
-				rd1.forward(req, resp);
+			String pass = req.getParameter("password");
+			String md5pass = MD5.getMD5(pass);
+			String select_querry = "SELECT NAME,PASSWORD FROM CUSTOMER WHERE NAME='" + name + "';";
+
+			try {
+				ResultSet rs = null;
+				Statement smt = con.createStatement();
+				rs = smt.executeQuery(select_querry);
+				if (!(rs.next())) {
+
+					rd2.forward(req, resp);
+
+				} else {
+					String dbpass = rs.getString(2);
+					if (md5pass.equals(dbpass)) {
+
+						HttpSession session = req.getSession(); // creating the
+																// new session
+						session.setAttribute("name", name);
+						rd1.forward(req, resp);
+					} else {
+						rd3.forward(req, resp);
+
+					}
+				}
+			} catch (SQLException e) {
+				System.out.println("Exception" + e);
+			} finally {
+				pw.close();
 			}
-			else
-			{
-				rd2.forward(req, resp);
-			}
-		}
-			 	
-		/*for registering the user*/
-	
+
+		} 
 		else if (strpath.equals("/html/register.do")) 
-		{ 
+		{ // register Servlet
 
 			RequestDispatcher rd4 = req.getRequestDispatcher("/html/success.html");
 			String name = req.getParameter("name");
@@ -120,25 +138,27 @@ public class ControllerServlet extends HttpServlet {
 			String email = req.getParameter("email");
 			String phone = req.getParameter("phone");
 			String gender = req.getParameter("gender");
-			String md5_of_pass = MD5.getMD5(pass);
-			boolean registeration = DatabaseClass.registerUser(name,md5_of_pass,email,phone,gender);
-			if(registeration)
-			{
-				rd4.forward(req, resp);
+			String md5pass = MD5.getMD5(pass);
+			String querry = "INSERT INTO CUSTOMER(NAME,PASSWORD,EMAIL,PHONENO,GENDER)VALUES(" + "'" + name + "','"
+					+ md5pass + "','" + email + "'," + phone + ",'" + gender + "');";
+			try {
+				Statement smt = con.createStatement();
+				int result = smt.executeUpdate(querry);
+				if (result > 0) {
+					rd4.forward(req, resp);
+				}
+			} catch (SQLException e) {
+				System.out.println("Exception" + e);
 			}
-		}
-		
-		/*for logging out the user*/
-		
-		
-		else if (strpath.equals("/html/logout.do")) 
-		{ 
+
+		} else if (strpath.equals("/html/logout.do")) { // logout servlet
 
 			RequestDispatcher rd = req.getRequestDispatcher("/html/login.html");
 			HttpSession s = req.getSession();
 			s.invalidate();
 			rd.forward(req, resp);
 		}
+
 	}
 
 	public void destroy() {
