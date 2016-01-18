@@ -17,7 +17,7 @@ public class FileUpload {
 		//System.out.println("Entered");
 		String currentdir = new File("").getAbsolutePath();
 		System.out.println(currentdir);
-		File configFile = new File(currentdir + "/Java/properties/SFTPConnect.properties");
+		File configFile = new File(currentdir + "/JavaProjects/Java/properties/SFTPConnect.properties");
 		Properties props = new Properties();
 		FileReader reader = new FileReader(configFile);
 		props.load(reader);

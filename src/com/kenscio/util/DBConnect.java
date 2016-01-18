@@ -17,7 +17,6 @@ public class DBConnect {
 		{
 			File file = new File("");
 			String currentdir = file.getAbsolutePath();
-			//System.out.println("user dir:" + System.getProperty("user.dir")); 
 			File configFile = new File(currentdir+"/JavaProjects/Java/properties/DBConnect.properties");
 			Properties props = new Properties();
 			FileReader reader = new FileReader(configFile);
