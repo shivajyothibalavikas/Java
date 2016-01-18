@@ -1,5 +1,4 @@
 <%@ page import="com.kenscio.to.Books"%>
-<%@ page import="com.kenscio.util.FetchDataFromDb"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

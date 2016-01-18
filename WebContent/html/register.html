@@ -1,59 +1,53 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script>
-
-</script>
-<title>Register yourself here</title>
-</head>
-<body bgcolor="#0B615E">
-	<h1 align="center">Please provide the required information....</h1>
-
-	<form action="/Login/html/register.do" method="post">
-		<fieldset>
-			<table align="center">
-				<legend>Personal information:</legend>
-				<tr>
-					<td>Enter User name:</td>
-					<td><input type="text" name="name" value=""
-						style="width: 163px" required/></td>
-				</tr>
-
-				<tr>
-					<td>Enter password:</td>
-					<td><input type="password" name="password"
-						style="width: 163px" required /></td>
-				</tr>
-
-				<tr>
-					<td>Enter Email:</td>
-					<td><input type="email" name="email" value=""
-						style="width: 163px" required/></td>
-				</tr>
-
-				<tr>
-					<td>Enter Phoneno:</td>
-					<td><input type="test" value="+91" size="3px" disabled/><input type="text" name="phone" min="10" max="10"
-						style="width: 128px" required/></td>
-				</tr>
-
-				<tr>
-					<td>Enter Gender:</td>
-					<td><input type="radio" name="gender" value="male" checked>Male
-						<input type="radio" name="gender" value="female">Female</td>
-				</tr>
-
-
-				<tr>
-					<td colspan="2">
-						<div align="right">
-							<input type="submit" value="register" align="center" />
-						</div>
-					</td>
-				</tr>
-			</table>
-		</fieldset>
-	</form>
-</body>
+	<head>	
+		<title>Register Form</title>
+		<link href="../css/registerstyle.css" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<!--webfonts-->
+		<link href='//fonts.googleapis.com/css?family=Lobster|Pacifico:400,700,300|Roboto:400,100,100italic,300,300italic,400italic,500italic,500' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Raleway:400,100,500,600,700,300' rel='stylesheet' type='text/css'>
+		<!--webfonts-->
+	</head>
+	<body>	
+			<!--start-login-form-->
+				<div class="main">
+			    	<div class="login-head">
+					    <h1>Register Form</h1>
+					</div>
+					<div  class="wrap">
+						  <div class="Regisration">
+						  	<div class="Regisration-head">
+						    	<h2><span></span>Register</h2>
+						 	 </div>
+						  	<form action="/Login/html/register.do" method="post">
+						  		<input type="text" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" >
+						  		<input type="text" value="Email Address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email Address';}" >
+								<input type="password" value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}" >
+								<input type="text" value="phonenumber" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'phonenumber';}" >
+								<br />
+								<div class="p-container"><div class="row"><div class="col-md-6">
+								<label class="checkbox">
+								<input type="checkbox" name="male" checked><i></i>Male
+								</label>
+								<label class="checkbox">
+								<input type="checkbox" name="female"><i></i>Female
+								</label>
+						        </div>
+								</div>
+								</div>
+								<br />				 
+								<div class="submit">
+									<input type="submit" value="Sign Me Up >" >
+								</div>
+											
+						  </form>
+					</div>
+				
+			  </div>
+			  </div>
+	</body>
 </html>
+
 
