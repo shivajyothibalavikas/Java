@@ -48,7 +48,7 @@ public class ControllerServlet extends HttpServlet {
 		
 		if (strpath.equals("/html/parse.do")) 					
 		{
-			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
+			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/jsonParsing.jsp");
 			FileReader reader = new FileReader(req.getParameter("input"));
 			StringBuffer json = JSONParse.parse(reader);
 			req.setAttribute("json", json);
@@ -69,15 +69,13 @@ public class ControllerServlet extends HttpServlet {
 			{
 				result = true;
 				req.setAttribute("result", result);
-				pw.println("Upload successfull");
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/layout.jsp");
-				dispatcher.include(req, resp);
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/html/uploadSuccess.html");
+				dispatcher.forward(req, resp);
 			}
 			else
 			{
 				result = false;
 				req.setAttribute("result", result);
-				pw.println("Upload Failed");
 				RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/layout.jsp");
 				dispatcher.forward(req, resp);
 			}

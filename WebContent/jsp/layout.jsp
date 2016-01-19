@@ -17,13 +17,13 @@
 		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/html/logout.html" ></object>';
 	}
 
-	function load_news() {
-		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/html/news.html" ></object>';
+	function load_upload() {
+		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/upload.jsp" ></object>';
 	}
 
-	function load_contact() {
-		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/html/contact.html" ></object>';
-	}
+	  function load_jsonParsing() {
+		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/jsonParsing.jsp" ></object>' 
+	}  
 
 	function load_about() {
 		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/html/about2.html" ></object>';
@@ -83,7 +83,7 @@ body {
 #footer {
 	width: 100%;
 	color: black;
-	border: 0;
+	border: 0;son F
 	background: #D8D8D8;
 	margin: 0px 0px 0px 0px;
 	padding: 10px;

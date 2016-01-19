@@ -3,44 +3,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style type="text/css">
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #D8D8D8;
-}
-
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover:not(.active) {
-    background-color: #848484;
-}
-
-.active {
-    background-color: #4CAF50;
-}</style>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+ <link href="../css/bootstrap.min.css" rel="stylesheet">
+ <!--  <style>
+    body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+    </style> -->
 </head>
 <body>
-	<ul>
-		<li id="home"><a class="active" href="#home" onclick="load_home()">Home</a></li>
-		<li id="news"><a href="#news" onclick="load_news()">Upload File</a></li>
-		<li id="contact"><a href="#contact" onclick="load_contact()">Json File Parsing</a></li>
-		<!-- <li id="about"><a href="#about" onclick="load_about()">About</a></li> -->
-		<li id="view"><a href="#view" onclick="load_view()">View Book Catalog</a></li>
-	</ul>
+	  <!-- Navigation -->
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" onclick="load_home()">Home</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="load_upload()">Upload File</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="load_jsonParsing()">Json File Parsing</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="load_view()">View Book Catalog</a>
+                    </li>
+                    <li>
+                        <a href="/Login/html/logout.do">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 </body>
 </html>
+
+ 
