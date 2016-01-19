@@ -69,15 +69,13 @@ public class ControllerServlet extends HttpServlet {
 			{
 				result = true;
 				req.setAttribute("result", result);
-				pw.println("Upload successfull");
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/layout.jsp");
-				dispatcher.include(req, resp);
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/html/uploadSuccess.html");
+				dispatcher.forward(req, resp);
 			}
 			else
 			{
 				result = false;
 				req.setAttribute("result", result);
-				pw.println("Upload Failed");
 				RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/layout.jsp");
 				dispatcher.forward(req, resp);
 			}

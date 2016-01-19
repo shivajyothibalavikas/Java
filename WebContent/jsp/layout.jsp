@@ -17,8 +17,8 @@
 		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/html/logout.html" ></object>';
 	}
 
-	function load_news() {
-		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/html/news.html" ></object>';
+	function load_upload() {
+		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/upload.jsp" ></object>';
 	}
 
 	  function load_jsonParsing() {
