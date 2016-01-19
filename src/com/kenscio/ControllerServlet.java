@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -42,7 +41,6 @@ public class ControllerServlet extends HttpServlet {
 	{
 		String strpath = req.getServletPath();
 		System.out.println(strpath);
-		java.sql.Statement smt = null;
 		PrintWriter pw = resp.getWriter();
 		
 		
@@ -98,12 +96,11 @@ public class ControllerServlet extends HttpServlet {
 		else if (strpath.equals("/html/login.do")) 
 		{ 																									
 			resp.setContentType("text/html");
-
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error2.html");
-
-			String name = req.getParameter("name");
+			String name = req.getParameter("Username");
 			String user_entered_pass = req.getParameter("password");
+			System.out.println(user_entered_pass);
 			String md5_of_pass = MD5.getMD5(user_entered_pass);
 			boolean user = DatabaseClass.loginCheck(name,md5_of_pass);
 			if(user == true)
@@ -122,7 +119,7 @@ public class ControllerServlet extends HttpServlet {
 	
 		else if (strpath.equals("/html/register.do")) 
 		{ 
-
+			
 			RequestDispatcher rd4 = req.getRequestDispatcher("/html/success.html");
 			String name = req.getParameter("name");
 			String pass = req.getParameter("password");
