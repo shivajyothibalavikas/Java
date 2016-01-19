@@ -3,9 +3,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $("#content").load("/Login/jsp/jsonParsing.jsp");
+    });
+});
+</script> -->
 <style type="text/css">
 ul {
-    list-style-type: none;
+    list-styljsone-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -16,7 +24,7 @@ li {
     float: left;
 }
 
-li a {
+li a{
     display: block;
     color: black;
     text-align: center;
@@ -43,3 +51,5 @@ li a:hover:not(.active) {
 	</ul>
 </body>
 </html>
+<!-- <li id="contact"><button>Json File Parsing</button></li> -->
+ 
