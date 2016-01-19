@@ -21,8 +21,8 @@
 		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/html/news.html" ></object>';
 	}
 
-	function load_contact() {
-		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/html/contact.html" ></object>';
+	function load_jsonParsing() {
+		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/jsonParsing.jsp" ></object>';
 	}
 
 	function load_about() {

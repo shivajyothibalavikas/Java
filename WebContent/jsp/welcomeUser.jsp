@@ -36,35 +36,11 @@
 		<%=usr%></h1>
 		<br/>
 
-		<font size="3" color="red">Click here to view the book catalog:</font><a href="/Login/jsp/display.jsp"><font size="3" color="green">View</font></a>
-	<br />
-	<br />
-
-	<form action="/Login/html/uploadfile.do" method="post">
-		Please provide the input File for uploading:<input type="file"
-			name="input"><br> <input type="submit" value="upload">
-		<p id="demo"></p>
-	</form>
-	<br />
-	<br />
-
-
-	<form action="/Login/html/parse.do" method="get">
-		Please provide the input Json File:<input type="file" name="input"><br>
-		<input type="submit" value="submit">
-
-		<%
-			if (request.getAttribute("json") != null) {
-		%>
-		<div id="textarea">
-			<textarea rows="20" cols="70"><%=request.getAttribute("json")%></textarea>
-		</div>
-	</form>
+	
 	<br />
 
 
 	<%
-		}
 
 		} else {
 	%>

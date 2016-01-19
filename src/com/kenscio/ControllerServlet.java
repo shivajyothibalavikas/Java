@@ -50,7 +50,7 @@ public class ControllerServlet extends HttpServlet {
 		
 		if (strpath.equals("/html/parse.do")) 					
 		{
-			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
+			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/jsonParsing.jsp");
 			FileReader reader = new FileReader(req.getParameter("input"));
 			StringBuffer json = JSONParse.parse(reader);
 			req.setAttribute("json", json);

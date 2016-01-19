@@ -38,8 +38,7 @@ li a:hover:not(.active) {
 	<ul>
 		<li id="home"><a class="active" href="#home" onclick="load_home()">Home</a></li>
 		<li id="news"><a href="#news" onclick="load_news()">Upload File</a></li>
-		<li id="contact"><a href="#contact" onclick="load_contact()">Json File Parsing</a></li>
-		<!-- <li id="about"><a href="#about" onclick="load_about()">About</a></li> -->
+		<li id="contact"><a href="#contact" onclick="load_jsonParsing()">Json File Parsing</a></li>
 		<li id="view"><a href="#view" onclick="load_view()">View Book Catalog</a></li>
 	</ul>
 </body>
