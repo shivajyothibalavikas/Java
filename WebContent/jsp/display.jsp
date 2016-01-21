@@ -15,8 +15,7 @@
 <script>
 	$(document).ready(function() {
 		$("#companies").dataTable({
-			"sPaginationType" : "full_numbers",
-			"bJQueryUI" : true
+			
 		});
 	});
 </script>

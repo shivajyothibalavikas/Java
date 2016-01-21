@@ -11,20 +11,27 @@
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     }
     </style> -->
+	  <!--   <style type="text/css">
+	   #icon
+	    {
+	    	padding-bottom: 20px;
+	    }
+	    </style> -->
 </head>
 <body>
 	  <!-- Navigation -->
-    <nav class="navbar navbar-inverse" role="navigation">
+    <nav class="navbar navbar-inverse" role="navigation"  style="background-color: #1C1C1C; -moz-box-shadow: -1px 0px 6px 3px #07b307;
+	-webkit-box-shadow: -1px 0px 6px 3px #07b307;">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+            <div class="navbar-header" id="icon">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"></a>
+                <a class="navbar-brand" href="#"><img src="../images/Kenscio.jpg" alt="Kenscio" height="50" width="50"/></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

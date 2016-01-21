@@ -12,8 +12,7 @@
 	line-height: 20px;
 	padding-bottom: 2px;
 	vertical-align: middle;
-	font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica,
-		sans-serif;
+	font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
 	font-size: 13px;
 	text-transform: none;
 	border: 1px solid transparent;

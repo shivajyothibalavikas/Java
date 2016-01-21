@@ -40,7 +40,6 @@ public class ControllerServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		String strpath = req.getServletPath();
-		System.out.println(strpath);
 		PrintWriter pw = resp.getWriter();
 		
 		
@@ -81,12 +80,6 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
-		/*else if(strpath.equals("/html/displaycatalog.do"))
-		{
-			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/display.jsp");
-			rd1.forward(req, resp);
-			
-		}*/
 		
 		
 		/*For login checking*/
@@ -98,7 +91,6 @@ public class ControllerServlet extends HttpServlet {
 			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error2.html");
 			String name = req.getParameter("Username");
 			String user_entered_pass = req.getParameter("password");
-			System.out.println(user_entered_pass);
 			String md5_of_pass = MD5.getMD5(user_entered_pass);
 			boolean user = DatabaseClass.loginCheck(name,md5_of_pass);
 			if(user == true)
