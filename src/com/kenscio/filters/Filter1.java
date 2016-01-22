@@ -12,10 +12,6 @@ import javax.servlet.ServletResponse;
 public class Filter1 implements Filter {
 
 	@Override
-	public void destroy() {
-	}
-
-	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain fc)
 			throws IOException, ServletException {
 		fc.doFilter(req, resp);
@@ -24,7 +20,11 @@ public class Filter1 implements Filter {
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		
+		System.out.println("init executed");
+	}
+	
+	@Override
+	public void destroy() {
 	}
 
 }
