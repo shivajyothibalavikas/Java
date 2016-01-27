@@ -10,9 +10,7 @@ public class MD5 {
 	{
 		byte[] pass = null;
 		try {
-			System.out.println(val);
 			MessageDigest md5 = MessageDigest.getInstance("MD5");
-			
 			md5.update(val.getBytes());
 			pass=md5.digest();
 			
