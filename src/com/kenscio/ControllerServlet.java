@@ -1,6 +1,7 @@
 package com.kenscio;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -63,8 +64,13 @@ public class ControllerServlet extends HttpServlet {
 			Boolean flag;
 			Boolean result;
 			File f = new File (req.getParameter("input"));
-			flag = FileUpload.upload(f);
-			if(flag == true)
+			System.out.println(f.getAbsolutePath());
+			System.out.println("file created");
+			FileInputStream fis = new FileInputStream(f.getAbsoluteFile());
+			System.out.println("file input streams created");
+			//String path = f.getAbsolutePath();
+			flag = FileUpload.upload(f,fis);
+			/*if(flag == true)
 			{
 				result = true;
 				req.setAttribute("result", result);
@@ -77,7 +83,7 @@ public class ControllerServlet extends HttpServlet {
 				req.setAttribute("result", result);
 				RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/layout.jsp");
 				dispatcher.forward(req, resp);
-			}
+			}*/
 		}
 		
 		

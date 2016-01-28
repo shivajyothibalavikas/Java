@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
+<%-- <%
 {
 File f = new File (request.getParameter("input"));
 boolean flag = FileUpload.upload(f); 
@@ -24,6 +24,6 @@ else
 out.print("Upload failed");  
 }
 }
-%>
+%> --%>
 </body>
 </html>
