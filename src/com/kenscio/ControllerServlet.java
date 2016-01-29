@@ -1,9 +1,8 @@
 package com.kenscio;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,10 +10,12 @@ import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import com.kenscio.database.DatabaseClass;
 import com.kenscio.util.DBConnect;
@@ -22,6 +23,7 @@ import com.kenscio.util.FileUpload;
 import com.kenscio.util.JSONParse;
 import com.kenscio.util.MD5;
 
+@MultipartConfig
 public class ControllerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -60,17 +62,25 @@ public class ControllerServlet extends HttpServlet {
 		
 		else if (strpath.equals("/html/uploadfile.do"))
 		{
-			resp.setContentType("text/html");
-			Boolean flag;
-			Boolean result;
+			final Part filePart = req.getPart("file");
+		    final String fileName = getFileName(filePart);
+		    InputStream filecontent = filePart.getInputStream();
+		    FileUpload.upload(filecontent,fileName);
+		    
+			
+			
+			
+			/*resp.setContentType("text/html");
+			//Boolean flag;
+			//Boolean result;
 			File f = new File (req.getParameter("input"));
-			System.out.println(f.getAbsolutePath());
-			System.out.println("file created");
-			FileInputStream fis = new FileInputStream(f.getAbsoluteFile());
-			System.out.println("file input streams created");
+			//System.out.println(f.getAbsolutePath());
+			//System.out.println("file created");
+			//FileInputStream fis = new FileInputStream(f.getAbsoluteFile());
+			//System.out.println("file input streams created");
 			//String path = f.getAbsolutePath();
-			flag = FileUpload.upload(f,fis);
-			/*if(flag == true)
+			FileUpload.upload(f);
+			if(flag == true)
 			{
 				result = true;
 				req.setAttribute("result", result);
@@ -141,6 +151,17 @@ public class ControllerServlet extends HttpServlet {
 			s.invalidate();
 			rd.forward(req, resp);
 		}
+		
+	}
+	
+	private String getFileName(final Part part) {
+	    for (String content : part.getHeader("content-disposition").split(";")) {
+	        if (content.trim().startsWith("filename")) {
+	            return content.substring(
+	                    content.indexOf('=') + 1).trim().replace("\"", "");
+	        }
+	    }
+	    return null;
 	}
 
 	public void destroy() {

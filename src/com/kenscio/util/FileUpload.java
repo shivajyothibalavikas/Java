@@ -1,9 +1,8 @@
 package com.kenscio.util;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
+
 import java.io.IOException;
+import java.io.InputStream;
 
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;
@@ -12,7 +11,7 @@ import com.jcraft.jsch.Session;
 
 public class FileUpload {
 
-	public static boolean upload(File f, FileInputStream file) throws IOException{
+	public static void upload(InputStream filecontent, String fileName) throws IOException{
 		Session session = null;
 		Channel channel = null;
 		ChannelSftp channelSftp = null;
@@ -31,18 +30,20 @@ public class FileUpload {
 			System.out.println("connected");
 			channel = session.openChannel("sftp");
 			channel.connect();
+			System.out.println("channel connected");
 			channelSftp = (ChannelSftp) channel;
-			//channelSftp.cd("/home/sftp_demo");
+			channelSftp.cd("/home/sftp_demo");
+			System.out.println(channelSftp.pwd());
 			// File f = new File("test.txt");
-			channelSftp.put(file, f.getName());
+			channelSftp.put(filecontent, fileName);
 			System.out.println("File successfully transfered");
-			return true;
 		} catch (Exception ex)
 
 		{
 			ex.printStackTrace();
-			return false;
 		}
 
 	}
+
+	 
 }
