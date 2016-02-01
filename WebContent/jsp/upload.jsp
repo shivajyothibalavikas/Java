@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/Login/html/uploadfile.do" method="post">
+<form action="/Login/jsp/uploadfile.do" method="post" enctype="multipart/form-data" >
 Please provide the input File for uploading:<input type="file"
 name="input"><br> <input type="submit" value="upload">
 <p id="demo"></p>

@@ -11,36 +11,43 @@ import com.jcraft.jsch.Session;
 
 public class FileUpload {
 
-	public static void upload(InputStream filecontent, String fileName) throws IOException{
-		Session session = null;
-		Channel channel = null;
-		ChannelSftp channelSftp = null;
+	public static boolean upload(InputStream filecontent, String fileName) throws IOException{
+		String user = "sftp_demo";
+		String password = "sftpdemo123";
+		String host = "5.9.80.147";
+		int port = 22;
+		String targetDir = "/user/sftp_demo/Test";
+		String fileNameDest = targetDir + "/" + fileName;
+		System.out.println(fileNameDest);
 
 		try
 
 		{
 			JSch jsch = new JSch();
-			session = jsch.getSession("sftp_demo","5.9.80.147");
-			session.setPassword("sftpdemo123");
-			java.util.Properties config = new java.util.Properties();
-			config.put("StrictHostKeyChecking", "no");
-			session.setConfig(config);
-			System.out.println("session configured");
+			Session session = jsch.getSession(user, host, port);
+			session.setPassword(password);
+			session.setConfig("StrictHostKeyChecking", "no");
+			System.out.println("Establishing Connection...");
 			session.connect();
-			System.out.println("connected");
-			channel = session.openChannel("sftp");
-			channel.connect();
-			System.out.println("channel connected");
-			channelSftp = (ChannelSftp) channel;
-			channelSftp.cd("/home/sftp_demo");
-			System.out.println(channelSftp.pwd());
-			// File f = new File("test.txt");
-			channelSftp.put(filecontent, fileName);
-			System.out.println("File successfully transfered");
-		} catch (Exception ex)
+			System.out.println("Connection established.");
+			System.out.println("Crating SFTP Channel.");
+			ChannelSftp sftpChannel = (ChannelSftp) session.openChannel("sftp");
+			sftpChannel.connect();
+			System.out.println("SFTP Channel created.");
+
+			sftpChannel.put(filecontent, fileName);
+			sftpChannel.disconnect();
+			System.out.println("Disconnecting the sftp Chnannel");
+
+			session.disconnect();
+			System.out.println("Discontinuing the session");
+			return true;
+		} 
+		catch (Exception ex)
 
 		{
 			ex.printStackTrace();
+			return false;
 		}
 
 	}

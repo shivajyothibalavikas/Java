@@ -1,11 +1,13 @@
 package com.kenscio;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -17,13 +19,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FilenameUtils;
+
 import com.kenscio.database.DatabaseClass;
 import com.kenscio.util.DBConnect;
 import com.kenscio.util.FileUpload;
 import com.kenscio.util.JSONParse;
 import com.kenscio.util.MD5;
 
-@MultipartConfig
 public class ControllerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -60,40 +67,50 @@ public class ControllerServlet extends HttpServlet {
 		
 		/*for uploading the file to the remote server*/ 
 		
-		else if (strpath.equals("/html/uploadfile.do"))
+		else if (strpath.equals("/jsp/uploadfile.do"))
 		{
-			final Part filePart = req.getPart("file");
-		    final String fileName = getFileName(filePart);
-		    InputStream filecontent = filePart.getInputStream();
-		    FileUpload.upload(filecontent,fileName);
-		    
+			System.out.println("got inside upload");
+			String lfile = null;
+			String fileName = null;
+			boolean flag=false;
 			
-			
-			
-			/*resp.setContentType("text/html");
-			//Boolean flag;
-			//Boolean result;
-			File f = new File (req.getParameter("input"));
-			//System.out.println(f.getAbsolutePath());
-			//System.out.println("file created");
-			//FileInputStream fis = new FileInputStream(f.getAbsoluteFile());
-			//System.out.println("file input streams created");
-			//String path = f.getAbsolutePath();
-			FileUpload.upload(f);
-			if(flag == true)
-			{
-				result = true;
-				req.setAttribute("result", result);
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/html/uploadSuccess.html");
-				dispatcher.forward(req, resp);
+			if (ServletFileUpload.isMultipartContent(req)) {
+				System.out.println("inside if");
+					try {
+						List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
+						System.out.println("inside try");
+
+					for (FileItem item : multiparts) {
+						if (!item.isFormField()) {
+							lfile = new File(item.getName()).getName();
+
+							System.out.println("file to upload : " + lfile);
+
+							String fieldName = item.getFieldName();
+							fileName = FilenameUtils.getName(item.getName());
+							InputStream fileContent = item.getInputStream();
+							System.out.println("File Content : " + fileContent.toString());
+							System.out.println("files to be uploaded : " + fileName);
+
+							//String fileNameDest = targetDir + "/" + fileName;
+							//System.out.println(fileNameDest);
+							System.out.println("calling method");
+							if(flag = FileUpload.upload(fileContent, fileName))
+							{
+							req.setAttribute("message", "Upload has been done successfully!");
+							}
+							else
+							{
+								req.setAttribute("message", "Upload unsuccessful!");
+							}
+							
+						}
+					}
+				}
+		     catch (FileUploadException e) {
+				e.printStackTrace();
+		     }
 			}
-			else
-			{
-				result = false;
-				req.setAttribute("result", result);
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/layout.jsp");
-				dispatcher.forward(req, resp);
-			}*/
 		}
 		
 		
@@ -150,19 +167,8 @@ public class ControllerServlet extends HttpServlet {
 			HttpSession s = req.getSession();
 			s.invalidate();
 			rd.forward(req, resp);
+	     }
 		}
-		
-	}
-	
-	private String getFileName(final Part part) {
-	    for (String content : part.getHeader("content-disposition").split(";")) {
-	        if (content.trim().startsWith("filename")) {
-	            return content.substring(
-	                    content.indexOf('=') + 1).trim().replace("\"", "");
-	        }
-	    }
-	    return null;
-	}
 
 	public void destroy() {
 		System.out.println("destroyed");
