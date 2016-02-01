@@ -27,9 +27,11 @@ import org.apache.commons.io.FilenameUtils;
 
 import com.kenscio.database.DatabaseClass;
 import com.kenscio.util.DBConnect;
+import com.kenscio.util.FileContent;
 import com.kenscio.util.FileUpload;
 import com.kenscio.util.JSONParse;
 import com.kenscio.util.MD5;
+import com.kenscio.util.SMTPMail;
 
 public class ControllerServlet extends HttpServlet {
 
@@ -97,6 +99,8 @@ public class ControllerServlet extends HttpServlet {
 							System.out.println("calling method");
 							if(flag = FileUpload.upload(fileContent, fileName))
 							{
+								String fc = FileContent.fetch(fileName);
+								SMTPMail.sendMail(fc);
 							req.setAttribute("message", "Upload has been done successfully!");
 							}
 							else
