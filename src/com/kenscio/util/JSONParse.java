@@ -1,15 +1,15 @@
 package com.kenscio.util;
 
-import java.io.FileReader;
+import java.io.InputStream;
 
 import javax.json.Json;
 import javax.json.stream.JsonParser;
 
 public class JSONParse {
 
-	public static StringBuffer parse(FileReader reader) {
+	public static StringBuffer parse(InputStream fileContent) {
 		StringBuffer sb = new StringBuffer();
-		JsonParser parser = Json.createParser(reader);
+		JsonParser parser = Json.createParser(fileContent);
 		while (parser.hasNext()) {
 			JsonParser.Event event = parser.next();
 			switch (event) {

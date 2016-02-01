@@ -47,38 +47,52 @@ public class ControllerServlet extends HttpServlet {
 		}
 	}
 
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
-	{
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String strpath = req.getServletPath();
 		PrintWriter pw = resp.getWriter();
-		
-		
-		/*for parsing the given json file*/
-		
-		if (strpath.equals("/html/parse.do")) 					
-		{
+
+		/* for parsing the given json file */
+
+		if (strpath.equals("/html/parse.do")) {
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/jsonParsing.jsp");
-			FileReader reader = new FileReader(req.getParameter("input"));
-			StringBuffer json = JSONParse.parse(reader);
-			req.setAttribute("json", json);
-			rd1.forward(req, resp);
-		}
-		
-		
-		/*for uploading the file to the remote server*/ 
-		
-		else if (strpath.equals("/jsp/uploadfile.do"))
-		{
-			System.out.println("got inside upload");
 			String lfile = null;
 			String fileName = null;
-			boolean flag=false;
-			
+			boolean flag = false;
 			if (ServletFileUpload.isMultipartContent(req)) {
-				System.out.println("inside if");
-					try {
-						List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
-						System.out.println("inside try");
+				try {
+					List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
+
+					for (FileItem item : multiparts) {
+						if (!item.isFormField()) {
+							lfile = new File(item.getName()).getName();
+
+							System.out.println("file to upload : " + lfile);
+
+							String fieldName = item.getFieldName();
+							fileName = FilenameUtils.getName(item.getName());
+							InputStream fileContent = item.getInputStream();
+							StringBuffer json = JSONParse.parse(fileContent);
+							req.setAttribute("json", json);
+							System.out.println("session set");
+						}
+					}
+				} catch (FileUploadException e) {
+					e.printStackTrace();
+				}
+			}
+			rd1.forward(req, resp);
+		}
+
+		/* for uploading the file to the remote server */
+
+		else if (strpath.equals("/jsp/uploadfile.do")) {
+			String lfile = null;
+			String fileName = null;
+			boolean flag = false;
+
+			if (ServletFileUpload.isMultipartContent(req)) {
+				try {
+					List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
 
 					for (FileItem item : multiparts) {
 						if (!item.isFormField()) {
@@ -92,57 +106,46 @@ public class ControllerServlet extends HttpServlet {
 							System.out.println("File Content : " + fileContent.toString());
 							System.out.println("files to be uploaded : " + fileName);
 
-							//String fileNameDest = targetDir + "/" + fileName;
-							//System.out.println(fileNameDest);
+							// String fileNameDest = targetDir + "/" + fileName;
+							// System.out.println(fileNameDest);
 							System.out.println("calling method");
-							if(flag = FileUpload.upload(fileContent, fileName))
-							{
-							req.setAttribute("message", "Upload has been done successfully!");
-							}
-							else
-							{
+							if (flag = FileUpload.upload(fileContent, fileName)) {
+								req.setAttribute("message", "Upload has been done successfully!");
+							} else {
 								req.setAttribute("message", "Upload unsuccessful!");
 							}
-							
+
 						}
 					}
+				} catch (FileUploadException e) {
+					e.printStackTrace();
 				}
-		     catch (FileUploadException e) {
-				e.printStackTrace();
-		     }
 			}
 		}
-		
-		
-		
-		/*For login checking*/
-		
-		else if (strpath.equals("/html/login.do")) 
-		{ 																									
+
+		/* For login checking */
+
+		else if (strpath.equals("/html/login.do")) {
 			resp.setContentType("text/html");
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error2.html");
 			String name = req.getParameter("Username");
 			String user_entered_pass = req.getParameter("password");
 			String md5_of_pass = MD5.getMD5(user_entered_pass);
-			boolean user = DatabaseClass.loginCheck(name,md5_of_pass);
-			if(user == true)
-			{
-				HttpSession session = req.getSession(); 
+			boolean user = DatabaseClass.loginCheck(name, md5_of_pass);
+			if (user == true) {
+				HttpSession session = req.getSession();
 				session.setAttribute("name", name);
 				rd1.forward(req, resp);
-			}
-			else
-			{
+			} else {
 				rd2.forward(req, resp);
 			}
 		}
-			 	
-		/*for registering the user*/
-	
-		else if (strpath.equals("/html/register.do")) 
-		{ 
-			
+
+		/* for registering the user */
+
+		else if (strpath.equals("/html/register.do")) {
+
 			RequestDispatcher rd4 = req.getRequestDispatcher("/html/success.html");
 			String name = req.getParameter("name");
 			String pass = req.getParameter("password");
@@ -150,25 +153,22 @@ public class ControllerServlet extends HttpServlet {
 			String phone = req.getParameter("phone");
 			String gender = req.getParameter("gender");
 			String md5_of_pass = MD5.getMD5(pass);
-			boolean registeration = DatabaseClass.registerUser(name,md5_of_pass,email,phone,gender);
-			if(registeration)
-			{
+			boolean registeration = DatabaseClass.registerUser(name, md5_of_pass, email, phone, gender);
+			if (registeration) {
 				rd4.forward(req, resp);
 			}
 		}
-		
-		/*for logging out the user*/
-		
-		
-		else if (strpath.equals("/html/logout.do")) 
-		{ 
+
+		/* for logging out the user */
+
+		else if (strpath.equals("/html/logout.do")) {
 
 			RequestDispatcher rd = req.getRequestDispatcher("/html/login.html");
 			HttpSession s = req.getSession();
 			s.invalidate();
 			rd.forward(req, resp);
-	     }
 		}
+	}
 
 	public void destroy() {
 		System.out.println("destroyed");
