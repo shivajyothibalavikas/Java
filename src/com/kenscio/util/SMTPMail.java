@@ -18,17 +18,12 @@ public class SMTPMail
 {
 	public static void sendMail(String content) 
 	{
-		FileReader reader;
-		String currentdir = new File("").getAbsolutePath();
-		final String from = "vikky.kv@gmail.com";
+		final String to = "shivajyothi@kenscio.com";
+		final String from = "kmadan77@gmail.com";
 		final String host = "smtp.gmail.com";
-		File configFile = new File(currentdir+"/JavaProjects/Java/properties/passwords.properties");
-		Properties props = new Properties();
+		final String psw = "transformer";
 		
 		try {
-			reader = new FileReader(configFile);
-			props.load(reader);
-			final String psw = props.getProperty("gmailpass");
 			
 			Properties properties = System.getProperties();
 			properties.put("mail.smtp.starttls.enable", "true");
@@ -45,17 +40,13 @@ public class SMTPMail
 			
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(from));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(from));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 			message.setSubject("Ping");
 			message.setText(content);
 
 			Transport.send(message);
 			System.out.println("message sent successfully....");
 			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
