@@ -67,7 +67,9 @@ public class DatabaseClass
 		return books;
 	}
 	
-	public static void putBook(Books b)												//adding a book
+	//adding a book
+	
+	public static void putBook(Books b)												
 	{
 		final String put_book_querry = "INSERT INTO BOOKS(NAME,CATEGORY,ISBN) VALUES('" + b.getBook_name() + "','"+ b.getBook_category() + "'," + b.getISBN() +");";
 		System.out.println(put_book_querry);
@@ -80,8 +82,8 @@ public class DatabaseClass
 		}
 	}
 	
-	
-	public static void removeBook(long bookid) 										//removing a book
+	//removing a book
+	public static void removeBook(long bookid) 										
 	{
 		final String remove_book_querry = "DELETE FROM BOOKS WHERE ID="+ bookid + ";";
 		try 
@@ -93,6 +95,8 @@ public class DatabaseClass
 		}
 	}
 
+	
+		//logging in user
 	public static boolean loginCheck(String name, String md5_of_pass) 
 	{
 		boolean user = false;
@@ -118,6 +122,7 @@ public class DatabaseClass
 
 	}
 
+		//registering user
 	public static boolean registerUser(String name, String md5_of_pass, String email, String phone, String gender) 
 	{
 		System.out.println(name);

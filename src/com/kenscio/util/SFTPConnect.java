@@ -2,7 +2,7 @@ package com.kenscio.util;
 
 import java.util.Properties;
 
-import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
@@ -10,13 +10,13 @@ import com.kenscio.to.ConnectionTo;
 
 public class SFTPConnect {
 	
-	public static Channel getConnection(ConnectionTo to)
+	public static ChannelSftp getConnection(ConnectionTo to)
 	{
 		
 		String user=to.getUser_name();
 		String ip=to.getIp();
 		String psw = to.getPassword();
-		Channel channel = null;
+		ChannelSftp sftpChannel = null;
 		
 		JSch jSch = new JSch();
 		Session session;
@@ -28,15 +28,16 @@ public class SFTPConnect {
 	        config.put("StrictHostKeyChecking", "no");
 	        session.setConfig(config);
 			session.connect();
-			channel= session.openChannel("sftp");
-			channel.connect();
+			sftpChannel = (ChannelSftp) session.openChannel("sftp");
+			sftpChannel.connect();
+
 		} 
 		catch (JSchException e) 
 		{
 			System.out.println("Exception" + e);
 		}
 		
-		return channel;
+		return sftpChannel;
 		
 	}
 

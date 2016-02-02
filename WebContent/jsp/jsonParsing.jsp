@@ -7,11 +7,11 @@
 </style>
 </head>
 <body>
-	<form action="/Login/html/parse.do" method="get">
+	<form action="/Login/html/parse.do" method="post" enctype="multipart/form-data">
 		<%
 			if (request.getAttribute("json") == null) {
 		%>
-		Please provide the input Json File:<input type="file" name="input"><br>
+		Please provide the input Json File:<input type="file" name="input" ><br>
 		<input type="submit" value="submit">
 		<%
 			} else {
