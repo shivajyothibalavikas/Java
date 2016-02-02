@@ -2,25 +2,32 @@ package com.kenscio.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.core.Response;
 
+import org.apache.commons.fileupload.FileItem;
+
 import com.kenscio.to.Books;
 import com.kenscio.to.ConnectionTo;
+import com.kenscio.util.JSONParse;
 import com.kenscio.util.SFTPConnect;
 import com.kenscio.util.SMTPMail;
+import com.kenscio.util.getFileStream;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 import com.kenscio.database.DatabaseClass;
 
-public class Service {
+public class Service 
+{
 
 	private Map<Long, Books> books = DatabaseClass.getBook();
 
@@ -85,5 +92,31 @@ public class Service {
 		
 		return "mail sent successfully";
 
+	}
+
+	public StringBuffer parseJson(List<FileItem> formItems) throws IOException {
+		InputStream fileContent = getFileStream.getStream(formItems);
+		StringBuffer json = JSONParse.parse(fileContent);
+		return json;
+	}
+
+	public void uploadFile(List<FileItem> formItems) throws IOException {
+		InputStream fileContent = getFileStream.getStream(formItems);
+		String fileName = getFileStream.getFileName(formItems);
+		ConnectionTo connectionTo = new ConnectionTo();
+		connectionTo.setIp("5.9.80.147");
+		connectionTo.setUser_name("sftp_demo");
+		connectionTo.setPassword("sftpdemo123");
+		ChannelSftp sftpChannel = SFTPConnect.getConnection(connectionTo);
+		try {
+			sftpChannel.put(fileContent, fileName);
+		} 
+		catch (SftpException e) {
+			e.printStackTrace();
+		}
+		finally {
+			sftpChannel.disconnect();
+		}
+		
 	}
 }

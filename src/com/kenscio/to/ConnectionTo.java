@@ -5,8 +5,7 @@ public class ConnectionTo
 	String user_name;
 	String ip;
 	String password;
-	String file_path;
-	
+	String file_path; 
 	
 	public String getUser_name() {
 		return user_name;

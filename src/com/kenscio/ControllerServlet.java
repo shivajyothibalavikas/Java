@@ -1,10 +1,6 @@
 package com.kenscio;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -12,31 +8,26 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.io.FilenameUtils;
 
 import com.kenscio.database.DatabaseClass;
+import com.kenscio.service.Service;
 import com.kenscio.util.DBConnect;
-import com.kenscio.util.FileContent;
-import com.kenscio.util.FileUpload;
-import com.kenscio.util.JSONParse;
 import com.kenscio.util.MD5;
-import com.kenscio.util.SMTPMail;
 
 public class ControllerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	Connection con = null;
+	Service service = null;
 
 	public void init(ServletConfig conf) throws ServletException {
 		try {
@@ -49,85 +40,55 @@ public class ControllerServlet extends HttpServlet {
 		}
 	}
 
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	@SuppressWarnings("unchecked")
+	protected void service(HttpServletRequest req, HttpServletResponse resp) {
 		String strpath = req.getServletPath();
-		PrintWriter pw = resp.getWriter();
 
 		/* for parsing the given json file */
 
 		if (strpath.equals("/html/parse.do")) {
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/jsonParsing.jsp");
-			String lfile = null;
-			String fileName = null;
-			boolean flag = false;
 			if (ServletFileUpload.isMultipartContent(req)) {
 				try {
-					List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
-
-					for (FileItem item : multiparts) {
-						if (!item.isFormField()) {
-							lfile = new File(item.getName()).getName();
-
-							System.out.println("file to upload : " + lfile);
-
-							String fieldName = item.getFieldName();
-							fileName = FilenameUtils.getName(item.getName());
-							InputStream fileContent = item.getInputStream();
-							StringBuffer json = JSONParse.parse(fileContent);
-							req.setAttribute("json", json);
-							System.out.println("session set");
-						}
-					}
+					DiskFileItemFactory factory = new DiskFileItemFactory();
+					ServletFileUpload upload = new ServletFileUpload(factory);
+					List<FileItem> formItems = upload.parseRequest(req);
+					service = new Service();
+					StringBuffer json = service.parseJson(formItems);
+					req.setAttribute("json", json);
+					rd1.forward(req, resp);
 				} catch (FileUploadException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (ServletException e) {
 					e.printStackTrace();
 				}
 			}
-			rd1.forward(req, resp);
+
 		}
 
 		/* for uploading the file to the remote server */
 
 		else if (strpath.equals("/jsp/uploadfile.do")) {
-			String lfile = null;
-			String fileName = null;
-			boolean flag = false;
-
 			if (ServletFileUpload.isMultipartContent(req)) {
+				RequestDispatcher rd1 = req.getRequestDispatcher("/html/uploadSuccess.html");
+				DiskFileItemFactory factory = new DiskFileItemFactory();
+				ServletFileUpload upload = new ServletFileUpload(factory);
+				List<FileItem> formItems;
 				try {
-					List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
-
-					for (FileItem item : multiparts) {
-						if (!item.isFormField()) {
-							lfile = new File(item.getName()).getName();
-
-							System.out.println("file to upload : " + lfile);
-
-							String fieldName = item.getFieldName();
-							fileName = FilenameUtils.getName(item.getName());
-							InputStream fileContent = item.getInputStream();
-							System.out.println("File Content : " + fileContent.toString());
-							System.out.println("files to be uploaded : " + fileName);
-
-							// String fileNameDest = targetDir + "/" + fileName;
-							// System.out.println(fileNameDest);
-							System.out.println("calling method");
-
-							if(flag = FileUpload.upload(fileContent, fileName))
-							{
-								String fc = FileContent.fetch(fileName);
-								SMTPMail.sendMail(fc);
-							req.setAttribute("message", "Upload has been done successfully!");
-							}
-							else
-							{
-								req.setAttribute("message", "Upload unsuccessful!");
-							}
-
-						}
-					}
+					formItems = upload.parseRequest(req);
+					service = new Service();
+					service.uploadFile(formItems);
+					rd1.forward(req, resp);
 				} catch (FileUploadException e) {
-					e.printStackTrace();
+					System.out.println("Exception during uploading the file:" + e);
+				} catch (IOException e) {
+					System.out.println("Exception during uploading the file:" + e);
+				} catch (ServletException e) {
+					System.out.println("Exception during uploading the file:" + e);
 				}
+
 			}
 		}
 
@@ -144,9 +105,21 @@ public class ControllerServlet extends HttpServlet {
 			if (user == true) {
 				HttpSession session = req.getSession();
 				session.setAttribute("name", name);
-				rd1.forward(req, resp);
+				try {
+					rd1.forward(req, resp);
+				} catch (ServletException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			} else {
-				rd2.forward(req, resp);
+				try {
+					rd2.forward(req, resp);
+				} catch (ServletException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 
@@ -163,7 +136,13 @@ public class ControllerServlet extends HttpServlet {
 			String md5_of_pass = MD5.getMD5(pass);
 			boolean registeration = DatabaseClass.registerUser(name, md5_of_pass, email, phone, gender);
 			if (registeration) {
-				rd4.forward(req, resp);
+				try {
+					rd4.forward(req, resp);
+				} catch (ServletException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 
@@ -174,7 +153,13 @@ public class ControllerServlet extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/html/login.html");
 			HttpSession s = req.getSession();
 			s.invalidate();
-			rd.forward(req, resp);
+			try {
+				rd.forward(req, resp);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
