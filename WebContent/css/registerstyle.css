@@ -282,8 +282,9 @@ form span {
 	width: 50px;
 }
 /*--start-check-box--*/
-.p-container {
-	padding: 10px 39px;
+.checkbox-inline {
+	width: 100px;
+    margin:0;
 }
 
 .p-container  .checkbox input {

@@ -1,53 +1,81 @@
 <!DOCTYPE html>
 <html>
-	<head>	
-		<title>Register Form</title>
-		<link href="../css/registerstyle.css" rel='stylesheet' type='text/css' />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-		<!--webfonts-->
-		<link href='//fonts.googleapis.com/css?family=Lobster|Pacifico:400,700,300|Roboto:400,100,100italic,300,300italic,400italic,500italic,500' rel='stylesheet' type='text/css'>
-		<link href='//fonts.googleapis.com/css?family=Raleway:400,100,500,600,700,300' rel='stylesheet' type='text/css'>
-		<!--webfonts-->
-	</head>
-	<body>	
-			<!--start-login-form-->
-				<div class="main">
-			    	<div class="login-head">
-					    <h1>Register Form</h1>
-					</div>
-					<div  class="wrap">
-						  <div class="Regisration">
-						  	<div class="Regisration-head">
-						    	<h2><span></span>Register</h2>
-						 	 </div>
-						  	<form action="/Login/html/register.do" method="post">
-						  		<input type="text" value="Username" name="name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" >
-						  		<input type="text" value="Email Address" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email Address';}" >
-								<input type="password" value="password" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}" >
-								<input type="text" value="phonenumber" name="phone"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'phonenumber';}" >
-								<br />
-								<div class="p-container"><div class="row"><div class="col-md-6">
-								<label class="checkbox">
-								<input type="checkbox" name="gender" value="male" checked><i></i>Male
-								</label>
-								<label class="checkbox">
-								<input type="checkbox" name="gender" value="female"><i></i>Female
-								</label>
-						        </div>
-								</div>
-								</div>
-								<br />				 
-								<div class="submit">
-									<input type="submit" value="Sign Me Up >" >
-								</div>
-											
-						  </form>
-					</div>
-				
-			  </div>
-			  </div>
-	</body>
-</html>
+<head>
+<title>Register Form</title>
+<link rel='stylesheet' href="../css/registerstyle.css" type='text/css' />
 
+<link rel="stylesheet" href="../css/bootstrap.css" type='text/css' />
+
+<link rel="stylesheet" href="../css/awesome-bootstrap-checkbox.css" type='text/css' />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/x-javascript">
+	
+	
+	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+</script>
+<!--webfonts-->
+<link
+	href='//fonts.googleapis.com/css?family=Lobster|Pacifico:400,700,300|Roboto:400,100,100italic,300,300italic,400italic,500italic,500'
+	rel='stylesheet' type='text/css'>
+<link
+	href='//fonts.googleapis.com/css?family=Raleway:400,100,500,600,700,300'
+	rel='stylesheet' type='text/css'>
+<!--webfonts-->
+</head>
+<body>
+	<!--start-login-form-->
+	<div class="main">
+		<div class="login-head">
+			<h1>Register Form</h1>
+		</div>
+		<div class="wrap">
+			<div class="Regisration">
+				<div class="Regisration-head">
+					<h2>
+						<span></span>Register
+					</h2>
+				</div>
+				<form action="/Login/html/register.do" method="post">
+					<input type="text" value="Username" name="name"
+						onfocus="this.value = '';"
+						onblur="if (this.value == '') {this.value = 'Username';}">
+					<input type="text" value="Email Address" name="email"
+						onfocus="this.value = '';"
+						onblur="if (this.value == '') {this.value = 'Email Address';}">
+					<input type="password" value="password" name="password"
+						onfocus="this.value = '';"
+						onblur="if (this.value == '') {this.value = 'password';}">
+					<input type="text" value="phonenumber" name="phone"
+						onfocus="this.value = '';"
+						onblur="if (this.value == '') {this.value = 'phonenumber';}">
+					<br />
+
+					<div class="checkbox checkbox-success checkbox-inline">
+						<input type="checkbox" class="styled" id="inlineCheckbox2"
+							value="Male" checked> <label for="inlineCheckbox2">
+							<font color="#fff"> Male </font>
+						</label>
+					</div>
+
+					<div class="checkbox checkbox-success checkbox-inline">
+						<input type="checkbox" class="styled" id="inlineCheckbox2"
+							value="Female"> <label for="inlineCheckbox2"><font
+							color="#fff"> Female </font></label>
+					</div>
+
+					<br /> <br />
+					<div class="submit">
+						<input type="submit" value="Sign Me Up >">
+					</div>
+
+				</form>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
 
