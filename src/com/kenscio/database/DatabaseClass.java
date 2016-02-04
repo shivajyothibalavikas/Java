@@ -54,16 +54,7 @@ public class DatabaseClass
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
-		finally
-		{
-			
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			
-		}
+		
 		return books;
 	}
 	
@@ -72,7 +63,6 @@ public class DatabaseClass
 	public static void putBook(Books b)												
 	{
 		final String put_book_querry = "INSERT INTO BOOKS(NAME,CATEGORY,ISBN) VALUES('" + b.getBook_name() + "','"+ b.getBook_category() + "'," + b.getISBN() +");";
-		System.out.println(put_book_querry);
 		try 
 		{
 			smt.executeUpdate(put_book_querry);
@@ -125,11 +115,6 @@ public class DatabaseClass
 		//registering user
 	public static boolean registerUser(String name, String md5_of_pass, String email, String phone, String gender) 
 	{
-		System.out.println(name);
-		System.out.println(md5_of_pass);
-		System.out.println(email);
-		System.out.println(phone);
-		System.out.println(gender);
 		boolean reg = false;
 		String querry = "INSERT INTO CUSTOMER(NAME,PASSWORD,EMAIL,PHONENO,GENDER)VALUES(" + "'" + name + "','"
 				+ md5_of_pass + "','" + email + "'," + phone + ",'" + gender + "');";

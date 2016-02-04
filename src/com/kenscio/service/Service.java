@@ -81,8 +81,6 @@ public class Service
 			
 			content = buffer.toString();
 			SMTPMail.sendMail(content);
-			
-			
 		} 
 		catch (SftpException e) {
 			e.printStackTrace();
