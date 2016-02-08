@@ -98,7 +98,7 @@ public class ControllerServlet extends HttpServlet {
 
 		/* For login checking */
 
-		else if (strpath.equals("/html/login.do")) {
+		else if (strpath.equals("/jsp/login.do")) {
 			resp.setContentType("text/html");
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/jsp/errWrongPass.jsp");
@@ -132,7 +132,7 @@ public class ControllerServlet extends HttpServlet {
 
 		/* for registering the user */
 
-		else if (strpath.equals("/html/register.do")) {
+		else if (strpath.equals("/jsp/register.do")) {
 
 			RequestDispatcher rd4 = req.getRequestDispatcher("/jsp/succReg.jsp");
 			String name = req.getParameter("name");
@@ -157,7 +157,7 @@ public class ControllerServlet extends HttpServlet {
 
 		else if (strpath.equals("/html/logout.do")) {
 
-			RequestDispatcher rd = req.getRequestDispatcher("/html/login.html");
+			RequestDispatcher rd = req.getRequestDispatcher("/jsp/login.jsp");
 			HttpSession s = req.getSession();
 			s.invalidate();
 			try {

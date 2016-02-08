@@ -24,7 +24,7 @@
 
 				<div class="panel-body" style="padding-bottom: 20px;">
 					<form class="form-horizontal" id="loginform" role="form"
-						action="/Login/html/login.do" method="post">
+						action="/Login/jsp/login.do" method="post">
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="email">Email:</label>
 							<div class="col-sm-10">

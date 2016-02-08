@@ -14,7 +14,7 @@
 
 	<h1>Invalid username or password!!! Please try again</h1>
 	<br>
-	<a href='/Login/html/login.html'>click here to login</a>
+	<a href='/Login/jsp/login.jsp'>click here to login</a>
 	<div class="navbar-fixed-bottom">
 		<p>Copyright &copy; kenscio.com</p>
 	</div>

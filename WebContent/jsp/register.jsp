@@ -21,7 +21,7 @@
 
 				<div class="panel-body">
 					<form class="form-horizontal" role="form"
-						action="/Login/html/register.do" method="post" id="registerform">
+						action="/Login/jsp/register.do" method="post" id="registerform">
 
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="email">Email:</label>

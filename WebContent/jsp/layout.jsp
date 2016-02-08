@@ -43,20 +43,16 @@
 	<!-- End Naviagtion -->
 
 	<!-- Begin Wrapper -->
-	<div class="container">
-		<!-- Begin Content -->
-		<div class="content" id="content">
+	<div class="container" id="content">
 			<%@ include file="/jsp/welcomeUser.jsp"%>
-		</div>
 		<!-- End Content -->
-
+	</div>
 
 		<!-- Begin Footer -->
 		<div class="navbar-fixed-bottom">
 			<p>Copyright &copy; kenscio.com</p>
 		</div>
 		<!-- End Footer -->
-	</div>
 	<!-- End Wrapper -->
 
 </body>
