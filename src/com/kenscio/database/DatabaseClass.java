@@ -129,6 +129,22 @@ public class DatabaseClass
 			System.out.println("Exception" + e);
 		}
 		return reg;
+	}
+
+	public static void insertTest(String name, int age, int sal) {
+		final String querry = "INSERT INTO TEST(NAME,AGE,SAL) VALUES('"+name+"',"+age+","+sal+");";
+		System.out.println(querry);
+		try {
+			Connection con = DBConnect.getConnection();
+			Statement smt = con.createStatement();
+			int rs = smt.executeUpdate(querry);
+			if(rs>0)
+			{
+				System.out.println("querry executed successfully");
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 	} 
 	
 		
