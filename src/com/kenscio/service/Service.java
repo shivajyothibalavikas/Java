@@ -28,7 +28,7 @@ import com.kenscio.database.DatabaseClass;
 
 public class Service 
 {
-
+	public static String ERRMSG = null;
 	private Map<Long, Books> books = DatabaseClass.getBook();
 
 	public Collection<Books> getBookByCategory(String category) {
@@ -81,8 +81,6 @@ public class Service
 			
 			content = buffer.toString();
 			SMTPMail.sendMail(content);
-			
-			
 		} 
 		catch (SftpException e) {
 			e.printStackTrace();
@@ -95,8 +93,9 @@ public class Service
 	}
 
 	public StringBuffer parseJson(List<FileItem> formItems) throws IOException {
+		StringBuffer json = null;
 		InputStream fileContent = getFileStream.getStream(formItems);
-		StringBuffer json = JSONParse.parse(fileContent);
+		json = JSONParse.parse(fileContent);
 		return json;
 	}
 

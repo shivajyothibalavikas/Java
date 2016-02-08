@@ -15,7 +15,7 @@ public class MD5 {
 			pass=md5.digest();
 			
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			System.out.println("Exception:" + e);
 		} catch (Exception e) {
 			System.out.println("Exception:" + e);
 			e.printStackTrace();
