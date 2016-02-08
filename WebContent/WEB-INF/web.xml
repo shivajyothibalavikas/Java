@@ -3,6 +3,7 @@
   <welcome-file-list>
     <welcome-file>html/welcome.html</welcome-file>
   </welcome-file-list>
+  
   <servlet>
     <servlet-name>Jersey Web Application</servlet-name>
     <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
@@ -11,26 +12,33 @@
       <param-value>com.kenscio.resources</param-value>
     </init-param>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>Jersey Web Application</servlet-name>
     <url-pattern>/webapi/*</url-pattern>
   </servlet-mapping>
+  
   <filter>
     <filter-name>myfilterServlet</filter-name>
     <filter-class>com.kenscio.filters.Filter1</filter-class>
   </filter>
+  
   <filter-mapping>
     <filter-name>myfilterServlet</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
+  
   <servlet>
     <servlet-name>controller</servlet-name>
     <servlet-class>com.kenscio.ControllerServlet</servlet-class>
+      <load-on-startup>1</load-on-startup>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>controller</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>anything</web-resource-name>

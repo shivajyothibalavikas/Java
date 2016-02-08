@@ -19,6 +19,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.kenscio.database.DatabaseClass;
+import com.kenscio.service.Run;
 import com.kenscio.service.Service;
 import com.kenscio.util.DBConnect;
 import com.kenscio.util.MD5;
@@ -30,9 +31,12 @@ public class ControllerServlet extends HttpServlet {
 	Service service = null;
 
 	public void init(ServletConfig conf) throws ServletException {
+		Run run = new Run();
+		Thread t1 = new Thread(run);
+		t1.start();
+		System.out.println("Thread started successfully");
 		try {
 			con = DBConnect.getConnection();
-
 		} catch (SQLException e) {
 			System.out.println("Exception" + e);
 		} catch (ClassNotFoundException e) {
