@@ -23,10 +23,9 @@
 		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/upload.jsp" ></object>';
 	}
 
-	  function load_jsonParsing() {
-		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/jsonParsing.jsp" ></object>' 
-	}  
-
+	function load_jsonParsing() {
+		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/jsonParsing.jsp" ></object>'
+	}
 </script>
 </head>
 <body>
@@ -43,7 +42,7 @@
 	</div>
 	<!-- End Naviagtion -->
 
-<!-- Begin Wrapper -->
+	<!-- Begin Wrapper -->
 	<div class="container">
 		<!-- Begin Content -->
 		<div class="content" id="content">
@@ -54,10 +53,10 @@
 
 		<!-- Begin Footer -->
 		<div class="navbar-fixed-bottom">
-		<p>Copyright &copy; kenscio.com</p>
-	</div>
+			<p>Copyright &copy; kenscio.com</p>
+		</div>
 		<!-- End Footer -->
-</div>
+	</div>
 	<!-- End Wrapper -->
 
 </body>
