@@ -5,6 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="../css/bootstrap.css" rel="stylesheet">
 <title>Kenscio</title>
 <script>
 	function load_view() {
@@ -27,43 +28,37 @@
 	}  
 
 </script>
-<link rel="stylesheet"  href="../css/layout.css">
+<link rel="stylesheet" href="../css/layout.css">
 </head>
 <body>
-	<!-- Begin Wrapper -->
-	<div id="wrapper">
 
-		<!-- Begin Header -->
-		<div id="header">
-			<%@ include file="/html/headder.html"%>
-		</div>
-		<!-- End Header -->
+	<!-- Begin Header -->
+	<div class="">
+		<%@ include file="/html/headder.html"%>
+	</div>
+	<!-- End Header -->
 
+	<!-- Begin Naviagtion -->
+	<div class="navigation">
+		<%@ include file="/jsp/navbar.jsp"%>
+	</div>
+	<!-- End Naviagtion -->
 
-
-
-		<!-- Begin Naviagtion -->
-		<div id="navigation">
-			<%@ include file="/jsp/navbar.jsp"%>
-		</div>
-		<!-- End Naviagtion -->
-
-
-
+<!-- Begin Wrapper -->
+	<div class="container">
 		<!-- Begin Content -->
-		<div id="content">
+		<div class="content" id="content">
 			<%@ include file="/jsp/welcomeUser.jsp"%>
 		</div>
 		<!-- End Content -->
 
 
 		<!-- Begin Footer -->
-		<div id="footer">
+		<div class="navbar-fixed-bottom">
 			<%@ include file="/html/footer.html"%>
 		</div>
 		<!-- End Footer -->
-
-	</div>
+</div>
 	<!-- End Wrapper -->
 
 </body>

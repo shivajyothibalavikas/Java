@@ -1,47 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login Form</title>
-<link href="../css/registerstyle.css" rel='stylesheet' type='text/css' />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--webfonts-->
-<link
-	href='//fonts.googleapis.com/css?family=Lobster|Pacifico:400,700,300|Roboto:400,100,100italic,300,300italic,400italic,500italic,500'
-	rel='stylesheet' type='text/css'>
-<link
-	href='//fonts.googleapis.com/css?family=Raleway:400,100,500,600,700,300'
-	rel='stylesheet' type='text/css'>
-<!--webfonts-->
-</head>
-<body>
-	<!--start-login-form-->
-	<div class="main">
-		<div class="login-head">
-			<h1>Login Form</h1>
-		</div>
-		<div class="wrap">
-			<div class="Regisration">
-				<div class="Regisration-head">
-					<h2>
-						<span></span>Login
-					</h2>
-				</div>
-				<form action="/Login/html/login.do" method="post">
-					<input type="text" value="Username" name ="Username" onfocus="this.value = '';"
-						onblur="if (this.value == '') {this.value = 'Username';}">
-					<input type="password" value="password" name="password" onfocus="this.value = '';"
-						onblur="if (this.value == '') {this.value = 'password';}" >
-					<br /> <br />
-					<div class="submit">
-						<input type="submit" value="Login >">
-					</div>
+	<title>Login Page</title>
 
+<link href="../css/bootstrap.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+<div class="pagination-centered">
+<div class="container text-center">
+	
+		<div class="panel panel-primary">
+  			<div class="panel-heading">
+    		 Login
+  			</div>
+
+  			<div class="panel-body" style="padding-bottom:20px;">
+  				<form class="form-horizontal" id="loginform" role="form" action="/Login/html/login.do" method="post">
+  					<div class="form-group">
+    					<label class="control-label col-sm-2" for="email">Email:</label>
+    						<div class="col-sm-10">
+      							<input type="email" class="form-control" id="email" placeholder="Enter email" name="Username">
+    						</div>
+  					</div>
+  					<div class="form-group">
+    					<label class="control-label col-sm-2" for="pwd">Password:</label>
+    						<div class="col-sm-10"> 
+      							<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+    						</div>
+  					</div>
+  					<div class="form-group"> 
+    					<div class="col-sm-offset-2 col-sm-8">
+    					<div class="span-4">
+      						<button type="submit" id="submitbutton" class="btn btn-success">Login</button>
+    					</div>
+    					</div>
+  					</div>
 				</form>
 			</div>
-
 		</div>
-	</div>
+</div>
+</div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script>
+
+function validatetext(id)
+{
+	if($("#"+id).val() == null || $("#"+id).val() == "")
+	{
+		var div = $("#"+id).closest("div");
+		div.removeClass("has-success");
+		$("#glypcn"+id).remove();
+		div.addClass("has-error has-feedback");
+		div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-remove form-control-feedback"></span>');
+		return false;
+	}
+
+	else
+	{
+		var div = $("#"+id).closest("div");
+		div.removeClass("has-error");
+		div.addClass("has-success has-feedback");
+		$("#glypcn"+id).remove();
+		div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-ok form-control-feedback"></span>');
+		return true;
+	}
+}
+
+$(document).ready(
+
+		function()
+		{
+
+			$("#submitbutton").click(
+
+				function()
+				{
+					if(!validatetext("email"))
+					{
+						return false;
+					}
+
+					if(!validatetext("pwd"))
+					{
+						return false;
+					}
+
+					$("form#loginform").submit();
+
+				}
+			);
+		}
+
+	);
+</script>
+
 </body>
 </html>
-

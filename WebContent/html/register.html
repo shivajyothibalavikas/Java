@@ -1,83 +1,133 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Register Form</title>
+	<title> Register Page </title>
 
-<link rel='stylesheet' href="../css/registerstyle.css" type='text/css' />
+<link href="../css/bootstrap.css" rel="stylesheet">
 
-<link rel="stylesheet" href="../css/bootstrap.css" type='text/css' />
-
-<link rel="stylesheet" href="../css/awesome-bootstrap-checkbox.css"
-	type='text/css' />
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="application/x-javascript">
-	
-	
-	
-	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-
-
-
-</script>
-<!--webfonts-->
-<link
-	href='//fonts.googleapis.com/css?family=Lobster|Pacifico:400,700,300|Roboto:400,100,100italic,300,300italic,400italic,500italic,500'
-	rel='stylesheet' type='text/css'>
-<link
-	href='//fonts.googleapis.com/css?family=Raleway:400,100,500,600,700,300'
-	rel='stylesheet' type='text/css'>
-<!--webfonts-->
 </head>
+
 <body>
-	<!--start-login-form-->
-	<div class="main">
-		<div class="login-head">
-			<h1>Register Form</h1>
-		</div>
-		<div class="wrap">
-			<div class="Regisration">
-				<div class="Regisration-head">
-					<h2>
-						<span></span>Register
-					</h2>
-				</div>
-				<form action="/Login/html/register.do" method="post">
 
-					<input type="text" value="Username" name="name"
-						onfocus="this.value = '';"
-						onblur="if (this.value == '') {this.value = 'Username';}">
-					<input type="text" value="Email Address" name="email"
-						onfocus="this.value = '';"
-						onblur="if (this.value == '') {this.value = 'Email Address';}">
-					<input type="password" value="password" name="password"
-						onfocus="this.value = '';"
-						onblur="if (this.value == '') {this.value = 'password';}">
-					<input type="text" value="phonenumber" name="phone"
-						onfocus="this.value = '';"
-						onblur="if (this.value == '') {this.value = 'phonenumber';}">
-					<br />
 
-					<div class="checkbox checkbox-success checkbox-inline">
-						<input type="radio" name="gender" id="radio8" value="Male" checked>
-						<label for="radio8"> <font color="#fff"> Male </font> </label>
-					</div>
+<div class="pagination-centered">
+<div class="container text-center">
+	
+		<div class="panel panel-primary">
+  			<div class="panel-heading"> Reigister </div>
 
-					<div class="checkbox checkbox-success checkbox-inline">
-						<input type="radio" name="gender" id="radio9" value="Female">
-						<label for="radio9"> <font color="#fff"> Female </font> </label>
-					</div>
+  			<div class="panel-body">
+  				<form class="form-horizontal" role="form" action="/Login/html/register.do" method="post" id="registerform">
+  					
+            <div class="form-group">
+    					<label class="control-label col-sm-2" for="email">Email:</label>
+    						<div class="col-sm-10">
+      							<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+    						</div>
+  					</div>
 
-					<br /> <br />
-					<div class="submit">
-						<input type="submit" value="Sign Me Up >">
-					</div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="email">Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="Enter Name" name="Username">
+                </div>
+            </div>
 
+            <div class="form-group">
+    					<label class="control-label col-sm-2" for="pwd">Password:</label>
+    						<div class="col-sm-10"> 
+      							<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+    						</div>
+  					</div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="email">Phone no:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="phone" placeholder="Enter Phone-number" name="phone">
+                </div>
+            </div>
+
+            <div class="form-group">
+              <label class="radio-inline"><input type="radio" name="gender"><strong>Male</strong></label>
+              <label class="radio-inline"><input type="radio" name="gender"><strong>Female</strong></label>
+            </div>
+  					
+            <div class="form-group"> 
+    					<div class="col-sm-offset-2 col-sm-8">
+      						<button type="submit" class="btn btn-danger" id="submitbutton">Register</button>
+    					</div>
+  					</div>
 				</form>
 			</div>
-
 		</div>
-	</div>
+</div>
+</div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+<script>
+
+function validatetext(id)
+{
+  if($("#"+id).val() == null || $("#"+id).val() == "")
+  {
+    var div = $("#"+id).closest("div");
+    div.removeClass("has-success");
+    $("#glypcn"+id).remove();
+    div.addClass("has-error has-feedback");
+    div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-remove form-control-feedback"></span>');
+    return false;
+  }
+
+  else
+  {
+    var div = $("#"+id).closest("div");
+    div.removeClass("has-error");
+    div.addClass("has-success has-feedback");
+    $("#glypcn"+id).remove();
+    div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-ok form-control-feedback"></span>');
+    return true;
+  }
+}
+
+$(document).ready(
+
+    function()
+    {
+
+      $("#submitbutton").click(
+
+        function()
+        {
+          if(!validatetext("email"))
+          {
+            return false;
+          }
+
+          if(!validatetext("name"))
+          {
+            return false;
+          }
+
+          if(!validatetext("pwd"))
+          {
+            return false;
+          }
+
+          if(!validatetext("phone"))
+          {
+            return false;
+          }
+
+          $("form#registerform").submit();
+
+        }
+      );
+    }
+
+  );
+</script>
+
 </body>
 </html>
-

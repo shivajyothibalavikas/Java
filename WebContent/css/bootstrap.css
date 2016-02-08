@@ -4,6 +4,26 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+/* custom css */
+.user-header
+{
+	color: #F2F2F2;
+	padding-top: 1px;
+	background-color: black;
+	height: 100px;
+}
+
+.user-footer
+{
+	color: #F2F2F2;
+	background-color: black;
+}
+
+
+
+
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -12,6 +32,7 @@ html {
 body {
   margin: 0;
 }
+
 article,
 aside,
 details,
@@ -62,6 +83,7 @@ dfn {
 h1 {
   margin: .67em 0;
   font-size: 2em;
+  color: red;
 }
 mark {
   color: #000;
@@ -1585,6 +1607,7 @@ pre code {
 .container {
   padding-right: 15px;
   padding-left: 15px;
+  padding-top: 5px;
   margin-right: auto;
   margin-left: auto;
 }

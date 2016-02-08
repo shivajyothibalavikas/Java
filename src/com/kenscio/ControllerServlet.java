@@ -76,7 +76,7 @@ public class ControllerServlet extends HttpServlet {
 
 		else if (strpath.equals("/jsp/uploadfile.do")) {
 			if (ServletFileUpload.isMultipartContent(req)) {
-				RequestDispatcher rd1 = req.getRequestDispatcher("/html/uploadSuccess.html");
+				RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/uploadSuccess.html");
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				List<FileItem> formItems;
@@ -101,9 +101,12 @@ public class ControllerServlet extends HttpServlet {
 		else if (strpath.equals("/html/login.do")) {
 			resp.setContentType("text/html");
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
-			RequestDispatcher rd2 = req.getRequestDispatcher("/html/error2.html");
+			RequestDispatcher rd2 = req.getRequestDispatcher("/jsp/errWrongPass.jsp");
 			String name = req.getParameter("Username");
+			System.out.println(name);
 			String user_entered_pass = req.getParameter("password");
+			System.out.println(user_entered_pass);
+
 			String md5_of_pass = MD5.getMD5(user_entered_pass);
 			boolean user = DatabaseClass.loginCheck(name, md5_of_pass);
 			if (user == true) {
@@ -131,7 +134,7 @@ public class ControllerServlet extends HttpServlet {
 
 		else if (strpath.equals("/html/register.do")) {
 
-			RequestDispatcher rd4 = req.getRequestDispatcher("/html/success.html");
+			RequestDispatcher rd4 = req.getRequestDispatcher("/jsp/succReg.jsp");
 			String name = req.getParameter("name");
 			String pass = req.getParameter("password");
 			String email = req.getParameter("email");

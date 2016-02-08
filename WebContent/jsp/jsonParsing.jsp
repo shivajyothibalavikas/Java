@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 </style>
+<link href="../css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 	<form action="/Login/html/parse.do" method="post" enctype="multipart/form-data">
