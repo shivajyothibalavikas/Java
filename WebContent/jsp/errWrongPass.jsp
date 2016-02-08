@@ -6,10 +6,7 @@
 <link href="../css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
-	
 		<%@ include file="/html/headder.html"%>
-	
-
 	<h1>Invalid username or password!!! Please try again</h1>
 	<br>
 	<a href='/Login/html/login.html'>click here to login</a>
