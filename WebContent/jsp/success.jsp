@@ -8,6 +8,7 @@
 <link href="../css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
+
 <p>Upload Successful</p>
 
 </body>

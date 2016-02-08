@@ -6,15 +6,17 @@
 <link href="../css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
-	<div class="navbar-fixed-top">
-		<%@ include file="/html/headder.html"%>
+
+	<div class="page-header">
+		<h1>Welcome</h1>
 	</div>
+
 
 	<h1>You have successfully registered!!</h1>
 	<br>
 	<a href='/Login/html/login.html'>click here to login</a>
 	<div class="navbar-fixed-bottom">
-	<%@ include file="/html/footer.html"%>
+		<p>Copyright &copy; kenscio.com</p>
 	</div>
 </body>
 </html>

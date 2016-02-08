@@ -33,8 +33,8 @@
 <body>
 
 	<!-- Begin Header -->
-	<div class="">
-		<%@ include file="/html/headder.html"%>
+	<div class="page-header">
+		<h1>Welcome</h1>
 	</div>
 	<!-- End Header -->
 
@@ -55,8 +55,8 @@
 
 		<!-- Begin Footer -->
 		<div class="navbar-fixed-bottom">
-			<%@ include file="/html/footer.html"%>
-		</div>
+		<p>Copyright &copy; kenscio.com</p>
+	</div>
 		<!-- End Footer -->
 </div>
 	<!-- End Wrapper -->
