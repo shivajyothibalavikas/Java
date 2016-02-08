@@ -28,7 +28,6 @@
 	}  
 
 </script>
-<link rel="stylesheet" href="../css/layout.css">
 </head>
 <body>
 
