@@ -76,7 +76,7 @@ public class ControllerServlet extends HttpServlet {
 
 		else if (strpath.equals("/jsp/uploadfile.do")) {
 			if (ServletFileUpload.isMultipartContent(req)) {
-				RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/uploadSuccess.html");
+				RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/success.jsp");
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				List<FileItem> formItems;
