@@ -31,10 +31,10 @@ public class ControllerServlet extends HttpServlet {
 	Service service = null;
 
 	public void init(ServletConfig conf) throws ServletException {
-		Run run = new Run();
+		/*Run run = new Run();
 		Thread t1 = new Thread(run);
 		t1.start();
-		System.out.println("Thread started successfully");
+		System.out.println("Thread started successfully");*/
 		try {
 			con = DBConnect.getConnection();
 		} catch (SQLException e) {
@@ -98,7 +98,8 @@ public class ControllerServlet extends HttpServlet {
 
 		/* For login checking */
 
-		else if (strpath.equals("/jsp/login.do")) {
+		else if (strpath.equals("/html/login.do")) {
+			System.out.println("strpath="+strpath);
 			resp.setContentType("text/html");
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/jsp/errWrongPass.jsp");
@@ -132,7 +133,7 @@ public class ControllerServlet extends HttpServlet {
 
 		/* for registering the user */
 
-		else if (strpath.equals("/jsp/register.do")) {
+		else if (strpath.equals("/html/register.do")) {
 
 			RequestDispatcher rd4 = req.getRequestDispatcher("/jsp/succReg.jsp");
 			String name = req.getParameter("name");
@@ -157,7 +158,7 @@ public class ControllerServlet extends HttpServlet {
 
 		else if (strpath.equals("/html/logout.do")) {
 
-			RequestDispatcher rd = req.getRequestDispatcher("/jsp/login.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/html/login.html");
 			HttpSession s = req.getSession();
 			s.invalidate();
 			try {
