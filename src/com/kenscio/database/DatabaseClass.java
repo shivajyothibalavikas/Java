@@ -115,6 +115,7 @@ public class DatabaseClass
 		//registering user
 	public static boolean registerUser(String name, String md5_of_pass, String email, String phone, String gender) 
 	{
+		System.out.println(name+""+md5_of_pass+""+email+""+phone+""+gender);
 		boolean reg = false;
 		String querry = "INSERT INTO CUSTOMER(NAME,PASSWORD,EMAIL,PHONENO,GENDER)VALUES(" + "'" + name + "','"
 				+ md5_of_pass + "','" + email + "'," + phone + ",'" + gender + "');";
