@@ -6,6 +6,8 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
 /* custom css */
+
+
 html {
 	font-family: sans-serif;
 	-webkit-text-size-adjust: 100%;
@@ -5409,12 +5411,15 @@ a.badge:hover, a.badge:focus {
 	margin-left: 3px;
 }
 
-.jumbotron {
-	padding-top: 30px;
+.jumbotron 
+{
+	
+	padding-top: 500px;
 	padding-bottom: 30px;
 	margin-bottom: 30px;
 	color: inherit;
 	background-color: #eee;
+	height: 700px;
 }
 
 .jumbotron h1, .jumbotron .h1 {
