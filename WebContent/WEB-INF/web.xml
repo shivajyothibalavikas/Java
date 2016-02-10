@@ -27,7 +27,7 @@
     <filter-name>myfilterServlet</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
-  
+ 
   <servlet>
     <servlet-name>controller</servlet-name>
     <servlet-class>com.kenscio.ControllerServlet</servlet-class>
@@ -38,6 +38,7 @@
     <servlet-name>controller</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
   
   <security-constraint>
     <web-resource-collection>

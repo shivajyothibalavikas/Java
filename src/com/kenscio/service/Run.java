@@ -105,7 +105,7 @@ public class Run implements Runnable {
 			
 			try 
 			{
-				Thread.sleep(5*1000);
+				Thread.sleep(1*60*1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

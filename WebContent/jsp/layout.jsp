@@ -7,6 +7,52 @@
 <head>
 <link href="../css/bootstrap.css" rel="stylesheet">
 <title>Kenscio</title>
+</head>
+<body>
+	<%		//session = request.getSession();
+			out.println("session ===== " + session.getAttribute("name") );
+			if(session.getAttribute("name")!=null)
+			{
+	%>
+
+	<!-- Begin Header -->
+	<div class="page-header">
+		<h1>Welcome</h1>
+	</div>
+	<!-- End Header -->
+
+	<!-- Begin Naviagtion -->
+	<div class="navigation">
+		<%@ include file="/jsp/navbar.jsp"%>
+	</div>
+	<!-- End Naviagtion -->
+
+	<!-- Begin Wrapper -->
+	<div class="container" id="content">
+		<%@ include file="/jsp/welcomeUser.jsp"%>
+		<!-- End Content -->
+	</div>
+
+	<!-- Begin Footer -->
+	<div class="navbar-fixed-bottom">
+		<p>Copyright &copy; kenscio.com</p>
+	</div>
+	<!-- End Footer -->
+	<!-- End Wrapper -->
+	<%
+
+		} else {
+	%>
+
+
+	<h1>Session expired Please try later</h1>
+	<a href="/Login/html/login.html">Click here to login again</a>
+
+
+	<%
+		}
+	%>
+</body>
 <script>
 	function load_view() {
 		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/display.jsp" ></object>';
@@ -27,34 +73,4 @@
 		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/jsonParsing.jsp" ></object>'
 	}
 </script>
-</head>
-<body>
-
-	<!-- Begin Header -->
-	<div class="page-header">
-		<h1>Welcome</h1>
-	</div>
-	<!-- End Header -->
-
-	<!-- Begin Naviagtion -->
-	<div class="navigation">
-		<%@ include file="/jsp/navbar.jsp"%>
-	</div>
-	<!-- End Naviagtion -->
-
-	<!-- Begin Wrapper -->
-	<div class="container" id="content">
-			<%@ include file="/jsp/welcomeUser.jsp"%>
-		<!-- End Content -->
-	</div>
-
-		<!-- Begin Footer -->
-		<div class="navbar-fixed-bottom">
-			<p>Copyright &copy; kenscio.com</p>
-		</div>
-		<!-- End Footer -->
-	<!-- End Wrapper -->
-
-</body>
-
 </html>

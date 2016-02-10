@@ -47,6 +47,7 @@ public class ControllerServlet extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	protected void service(HttpServletRequest req, HttpServletResponse resp) {
 		String strpath = req.getServletPath();
+		System.out.println("strpath="+strpath);
 
 		/* for parsing the given json file */
 
@@ -99,7 +100,7 @@ public class ControllerServlet extends HttpServlet {
 		/* For login checking */
 
 		else if (strpath.equals("/html/login.do")) {
-			System.out.println("strpath="+strpath);
+			
 			resp.setContentType("text/html");
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/jsp/errWrongPass.jsp");
@@ -161,6 +162,7 @@ public class ControllerServlet extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/html/login.html");
 			HttpSession s = req.getSession();
 			s.invalidate();
+			System.out.println("session invalidated");
 			try {
 				rd.forward(req, resp);
 			} catch (ServletException e) {
@@ -169,6 +171,25 @@ public class ControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+	/*	else if(strpath.equals("layout.jsp"))
+		{
+			System.out.println("entered");
+			HttpSession s = req.getSession();
+			if(s.isNew())
+			{
+				PrintWriter out;
+				try {
+					out = resp.getWriter();
+					out.println("Session Expired!!!");
+					out.println("<a href='/Login/html/login.html'>Click here to login again</a>");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		}*/
 	}
 
 	public void destroy() {
