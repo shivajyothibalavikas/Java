@@ -7,7 +7,38 @@
 <head>
 <link href="../css/bootstrap.css" rel="stylesheet">
 <title>Kenscio</title>
+
+<script>
+	function load_view() {
+		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/display.jsp" ></object>';
+	}
+	function load_home() {
+		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/welcomeUser.jsp"></object>';
+	}
+
+	function load_welcome() {
+		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/html/logout.html" ></object>';
+	}
+
+	function load_upload() {
+		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/upload.jsp" ></object>';
+	}
+
+	function load_jsonParsing() {
+		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/jsonParsing.jsp" ></object>'
+	}
+</script>
+
+<script type='text/javascript'>
+window.history.forward();
+function noBack() {window.history.forward(); }
+window.onload='noBack()';
+window.onpageshow=function(evt){if(evt.persisted)noBack()}
+window.onunload=function(){void(0)}
+ </script>
+
 </head>
+
 <body>
 	<%		//session = request.getSession();
 			if(session.getAttribute("name")!=null)
