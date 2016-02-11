@@ -22,36 +22,17 @@
 <link href="../css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
-	<%
-		String usr = null;
-		session = request.getSession();
-		usr = (String) session.getAttribute("name");
-		if (usr != null) {
-	%>
+	
 
 
 	<h1>
-		Hello welcome
-		<%=usr%></h1>
+		Hello welcome User
+		</h1>
 		<br/>
 
 	
 	<br />
-
-
-	<%
-
-		} else {
-	%>
-
-
-	<h1>Session expired Please try later</h1>
-	<a href="/Login/html/login.html">Click here to login again</a>
-
-
-	<%
-		}
-	%>
+	
 
 </body>
 </html>

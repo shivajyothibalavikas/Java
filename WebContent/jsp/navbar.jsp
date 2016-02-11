@@ -7,7 +7,7 @@
 <link href="../css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
-
+<form id="myForm" action="/Login/html/logout.do" method="post"></form>
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -27,11 +27,11 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="#" onclick="load_home()">Home</a></li>
-					<li><a href="#" onclick="load_upload()">Upload File</a></li>
-					<li><a href="#" onclick="load_jsonParsing()">Json File Parsing</a></li>
-					<li><a href="#" onclick="load_view()">View Book Catalog</a></li>
-					<li><a href="/Login/html/logout.do">Logout</a></li>
+					<li><a onclick="load_home()">Home</a></li>
+					<li><a onclick="load_upload()">Upload File</a></li>
+					<li><a onclick="load_jsonParsing()">Json File Parsing</a></li>
+					<li><a onclick="load_view()">View Book Catalog</a></li>
+					<li><a onclick="myForm.submit();">Logout</a></li>
 				</ul>
 			</div>
 		</div>

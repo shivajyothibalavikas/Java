@@ -7,6 +7,7 @@
 <head>
 <link href="../css/bootstrap.css" rel="stylesheet">
 <title>Kenscio</title>
+
 <script>
 	function load_view() {
 		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/display.jsp" ></object>';
@@ -39,6 +40,11 @@ window.onunload=function(){void(0)}
 </head>
 
 <body>
+	<%		//session = request.getSession();
+			out.println("session ===== " + session.getAttribute("name") );
+			if(session.getAttribute("name")!=null)
+			{
+	%>
 
 	<!-- Begin Header -->
 	<div class="page-header">
@@ -64,7 +70,38 @@ window.onunload=function(){void(0)}
 	</div>
 	<!-- End Footer -->
 	<!-- End Wrapper -->
+	<%
 
+		} else {
+	%>
+
+
+	<h1>Session expired Please try later</h1>
+	<a href="/Login/html/login.html">Click here to login again</a>
+
+
+	<%
+		}
+	%>
 </body>
+<script>
+	function load_view() {
+		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/display.jsp" ></object>';
+	}
+	function load_home() {
+		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/welcomeUser.jsp"></object>';
+	}
 
+	function load_welcome() {
+		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/html/logout.html" ></object>';
+	}
+
+	function load_upload() {
+		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/upload.jsp" ></object>';
+	}
+
+	function load_jsonParsing() {
+		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/jsonParsing.jsp" ></object>'
+	}
+</script>
 </html>
