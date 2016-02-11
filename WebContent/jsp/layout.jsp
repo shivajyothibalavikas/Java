@@ -27,7 +27,17 @@
 		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/jsonParsing.jsp" ></object>'
 	}
 </script>
+
+<script type='text/javascript'>
+window.history.forward();
+function noBack() {window.history.forward(); }
+window.onload='noBack()';
+window.onpageshow=function(evt){if(evt.persisted)noBack()}
+window.onunload=function(){void(0)}
+ </script>
+
 </head>
+
 <body>
 
 	<!-- Begin Header -->
@@ -44,15 +54,15 @@
 
 	<!-- Begin Wrapper -->
 	<div class="container" id="content">
-			<%@ include file="/jsp/welcomeUser.jsp"%>
+		<%@ include file="/jsp/welcomeUser.jsp"%>
 		<!-- End Content -->
 	</div>
 
-		<!-- Begin Footer -->
-		<div class="navbar-fixed-bottom">
-			<p>Copyright &copy; kenscio.com</p>
-		</div>
-		<!-- End Footer -->
+	<!-- Begin Footer -->
+	<div class="navbar-fixed-bottom">
+		<p>Copyright &copy; kenscio.com</p>
+	</div>
+	<!-- End Footer -->
 	<!-- End Wrapper -->
 
 </body>

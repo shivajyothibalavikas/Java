@@ -31,10 +31,10 @@ public class ControllerServlet extends HttpServlet {
 	Service service = null;
 
 	public void init(ServletConfig conf) throws ServletException {
-		Run run = new Run();
+		/*Run run = new Run();
 		Thread t1 = new Thread(run);
 		t1.start();
-		System.out.println("Thread started successfully");
+		System.out.println("Thread started successfully");*/
 		try {
 			con = DBConnect.getConnection();
 		} catch (SQLException e) {
