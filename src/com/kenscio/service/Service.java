@@ -30,7 +30,8 @@ public class Service
 {
 	public static String ERRMSG = null;
 	private Map<Long, Books> books = DatabaseClass.getBook();
-
+	
+	//get the book by category
 	public Collection<Books> getBookByCategory(String category) {
 		ArrayList<Books> al = new ArrayList<>();
 		for (Books book : books.values()) {
@@ -40,27 +41,35 @@ public class Service
 		}
 		return al;
 	}
-
+	
+	
+	//get all the books
 	public Collection<Books> getAllBooks() {
 		return books.values();
 	}
-
+	
+	//get a book by ID
 	public Books getBook(long id) {
 		return books.get(id);
 	}
 
+	
+	//add a book
 	public Response addBook(Books book) throws URISyntaxException {
 		DatabaseClass.putBook(book);
 		return Response.created(new URI("/BookCatalog/webapi/books")).build();
 
 	}
-
+	
+	
+	//delete a book
 	public String deleteBook(long bookid) {
 		DatabaseClass.removeBook(bookid);
 		return "book deleted";
 	}
 	
 	
+	//
 	public String getConnection(ConnectionTo con) 
 	{
 		String line;
@@ -91,14 +100,18 @@ public class Service
 		return "mail sent successfully";
 
 	}
-
+	
+	
+	//parsing Json
 	public StringBuffer parseJson(List<FileItem> formItems) throws IOException {
 		StringBuffer json = null;
 		InputStream fileContent = getFileStream.getStream(formItems);
 		json = JSONParse.parse(fileContent);
 		return json;
 	}
-
+	
+	
+	//uploading the file
 	public void uploadFile(List<FileItem> formItems) throws IOException {
 		InputStream fileContent = getFileStream.getStream(formItems);
 		String fileName = getFileStream.getFileName(formItems);
@@ -108,6 +121,7 @@ public class Service
 		connectionTo.setPassword("sftpdemo123");
 		ChannelSftp sftpChannel = SFTPConnect.getConnection(connectionTo);
 		try {
+			sftpChannel.cd("dump");
 			sftpChannel.put(fileContent, fileName);
 		} 
 		catch (SftpException e) {

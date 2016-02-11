@@ -105,10 +105,7 @@ public class ControllerServlet extends HttpServlet {
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/jsp/errWrongPass.jsp");
 			String name = req.getParameter("Username");
-			System.out.println(name);
 			String user_entered_pass = req.getParameter("password");
-			System.out.println(user_entered_pass);
-
 			String md5_of_pass = MD5.getMD5(user_entered_pass);
 			boolean user = DatabaseClass.loginCheck(name, md5_of_pass);
 			if (user == true) {
@@ -162,7 +159,6 @@ public class ControllerServlet extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/html/login.html");
 			HttpSession s = req.getSession();
 			s.invalidate();
-			System.out.println("session invalidated");
 			try {
 				rd.forward(req, resp);
 			} catch (ServletException e) {
@@ -172,24 +168,6 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
-	/*	else if(strpath.equals("layout.jsp"))
-		{
-			System.out.println("entered");
-			HttpSession s = req.getSession();
-			if(s.isNew())
-			{
-				PrintWriter out;
-				try {
-					out = resp.getWriter();
-					out.println("Session Expired!!!");
-					out.println("<a href='/Login/html/login.html'>Click here to login again</a>");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-			}
-		}*/
 	}
 
 	public void destroy() {

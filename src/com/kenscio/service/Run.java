@@ -1,7 +1,10 @@
 package com.kenscio.service;
 
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
@@ -17,12 +20,13 @@ import com.jcraft.jsch.SftpATTRS;
 public class Run implements Runnable {
 	int len = 0;
 	List<String> alold = new ArrayList<String>();
-
 	@SuppressWarnings("unchecked")
 	public void run()
 	{
 		while(true)
 		{
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date date = new Date();
 			ConnectionTo connectionTo = new ConnectionTo();
 			connectionTo.setIp("5.9.80.147");
 			connectionTo.setUser_name("sftp_demo");
@@ -48,7 +52,7 @@ public class Run implements Runnable {
 				{
 					if(newLen-len>0)
 					{
-						System.out.println(newLen-len + " Files added:");
+						System.out.println(newLen-len + " Files added (" +dateFormat.format(date) + "):");
 						for(String ele : alnew)
 						{
 							if(alold.contains(ele))
@@ -76,7 +80,7 @@ public class Run implements Runnable {
 					}
 					else
 					{
-						System.out.println(len-newLen + " Files removed:");
+						System.out.println(len-newLen + " Files removed (" +dateFormat.format(date) + "):");
 						for(String ele : alold)
 						{
 							if(alnew.contains(ele))
@@ -96,7 +100,7 @@ public class Run implements Runnable {
 				}
 				else
 				{
-					System.out.println("no files added or removed");
+					System.out.println("no files added or removed (" +dateFormat.format(date) + "):");
 				}
 				
 			} catch (SftpException e1) {
@@ -105,7 +109,7 @@ public class Run implements Runnable {
 			
 			try 
 			{
-				Thread.sleep(1*60*1000);
+				Thread.sleep(5*1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

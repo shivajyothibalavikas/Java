@@ -10,7 +10,6 @@
 </head>
 <body>
 	<%		//session = request.getSession();
-			out.println("session ===== " + session.getAttribute("name") );
 			if(session.getAttribute("name")!=null)
 			{
 	%>
