@@ -3,12 +3,14 @@ package com.kenscio.util;
 import java.io.InputStream;
 
 import javax.json.Json;
+import javax.json.JsonException;
 import javax.json.stream.JsonParser;
 
 public class JSONParse {
 
-	public static StringBuffer parse(InputStream fileContent) {
+	public static StringBuffer parse(InputStream fileContent) throws JsonException {
 		StringBuffer sb = new StringBuffer();
+
 		JsonParser parser = Json.createParser(fileContent);
 		while (parser.hasNext()) {
 			JsonParser.Event event = parser.next();
@@ -31,12 +33,12 @@ public class JSONParse {
 				break;
 			}
 			case KEY_NAME: {
-				sb.append("\t"+parser.getString());
+				sb.append("\t" + parser.getString());
 				sb.append(" = ");
 				break;
 			}
 			case VALUE_FALSE: {
-				sb.append("false"+"\n");
+				sb.append("false" + "\n");
 				break;
 			}
 			case VALUE_NULL: {
@@ -45,14 +47,14 @@ public class JSONParse {
 			}
 			case VALUE_NUMBER: {
 				if (parser.isIntegralNumber()) {
-					sb.append(parser.getInt()+"\n");
+					sb.append(parser.getInt() + "\n");
 				} else {
-					sb.append(parser.getBigDecimal()+"\n");
+					sb.append(parser.getBigDecimal() + "\n");
 				}
 				break;
 			}
 			case VALUE_STRING: {
-				sb.append(parser.getString()+"\n");
+				sb.append(parser.getString() + "\n");
 				break;
 			}
 			case VALUE_TRUE: {
@@ -60,10 +62,11 @@ public class JSONParse {
 				break;
 			}
 			default: {
+			}
+			}
 
-			}
-			}
 		}
+
 		return sb;
 	}
 }

@@ -7,7 +7,7 @@
 <link href="../css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
-<form id="myForm" action="/Login/html/logout.do" method="post"></form>
+<form id="myForm" action="/Login/jsp/logout.do" method="post"></form>
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
