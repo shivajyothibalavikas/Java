@@ -8,9 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.json.JsonException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,10 +45,17 @@ public class ControllerServlet extends HttpServlet {
 	 private String ID_SEARCH_TERM,NAME_SEARCH_TERM,CATEGORY_SEARCH_TERM,ISBN_SEARCH_TERM;
 */
 	public void init(ServletConfig conf) throws ServletException {
+<<<<<<< HEAD
 		/*Run run = new Run();
 		Thread t1 = new Thread(run);
 		t1.start();
 		System.out.println("Thread started successfully");*/
+=======
+		/*
+		 * Run run = new Run(); Thread t1 = new Thread(run); t1.start();
+		 * System.out.println("Thread started successfully");
+		 */
+>>>>>>> 07a02e60379fa8129d74963378ae94fd3e9e061b
 		try {
 			con = DBConnect.getConnection();
 		} catch (SQLException e) {
@@ -59,7 +68,7 @@ public class ControllerServlet extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	protected void service(HttpServletRequest req, HttpServletResponse resp) {
 		String strpath = req.getServletPath();
-		System.out.println("strpath="+strpath);
+		System.out.println("strpath=" + strpath);
 
 		/* for parsing the given json file */
 
@@ -74,8 +83,14 @@ public class ControllerServlet extends HttpServlet {
 					StringBuffer json = service.parseJson(formItems);
 					req.setAttribute("json", json);
 					rd1.forward(req, resp);
+				} catch (JsonException e) {
+					try {
+						resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error Occured while parsing");
+					} catch (IOException e1) {
+						System.out.println(e1);
+					}
 				} catch (FileUploadException e) {
-					e.printStackTrace();
+					
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (ServletException e) {
@@ -87,7 +102,9 @@ public class ControllerServlet extends HttpServlet {
 
 		/* for uploading the file to the remote server */
 
-		else if (strpath.equals("/jsp/uploadfile.do")) {
+		else if (strpath.equals("/jsp/uploadfile.do"))
+
+		{
 			if (ServletFileUpload.isMultipartContent(req)) {
 				RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/success.jsp");
 				DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -97,7 +114,7 @@ public class ControllerServlet extends HttpServlet {
 					formItems = upload.parseRequest(req);
 					service = new Service();
 					service.uploadFile(formItems);
-					rd1.forward(req, resp);
+					rd1.include(req, resp);
 				} catch (FileUploadException e) {
 					System.out.println("Exception during uploading the file:" + e);
 				} catch (IOException e) {
@@ -147,8 +164,10 @@ public class ControllerServlet extends HttpServlet {
 
 		/* For login checking */
 
-		else if (strpath.equals("/html/login.do")) {
-			
+		else if (strpath.equals("/html/login.do"))
+
+		{
+
 			resp.setContentType("text/html");
 			RequestDispatcher rd1 = req.getRequestDispatcher("/jsp/layout.jsp");
 			RequestDispatcher rd2 = req.getRequestDispatcher("/jsp/errWrongPass.jsp");
@@ -179,7 +198,9 @@ public class ControllerServlet extends HttpServlet {
 
 		/* for registering the user */
 
-		else if (strpath.equals("/html/register.do")) {
+		else if (strpath.equals("/html/register.do"))
+
+		{
 
 			RequestDispatcher rd4 = req.getRequestDispatcher("/jsp/succReg.jsp");
 			String name = req.getParameter("name");
@@ -202,8 +223,8 @@ public class ControllerServlet extends HttpServlet {
 
 		/* for logging out the user */
 
-		else if (strpath.equals("/html/logout.do")) {
-
+		else if (strpath.equals("/jsp/logout.do"))
+		{
 			RequestDispatcher rd = req.getRequestDispatcher("/html/login.html");
 			HttpSession s = req.getSession();
 			s.invalidate();
@@ -214,8 +235,21 @@ public class ControllerServlet extends HttpServlet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		} 
+		else if (strpath.equals("/handler")) {
+			Integer status_code = (Integer) req.getAttribute("javax.servlet.error.status_code");
+			String error_message = (String)req.getAttribute("javax.servlet.error.message");
+			req.setAttribute("status_code", status_code);
+			req.setAttribute("error_message", error_message);
+			RequestDispatcher rd = req.getRequestDispatcher("/jsp/Errors.jsp");
+			try {
+				rd.forward(req, resp);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		
 	}
 
 	public void destroy() {

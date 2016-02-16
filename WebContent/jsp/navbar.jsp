@@ -8,7 +8,10 @@
 </head>
 <body>
 <form id="myForm" action="/Login/jsp/logout.do" method="post"></form>
+<<<<<<< HEAD
 <!-- <form id="myForm1" action="/Login/jsp/display.do" method="post"></form> -->
+=======
+>>>>>>> 07a02e60379fa8129d74963378ae94fd3e9e061b
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->

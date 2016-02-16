@@ -6,26 +6,28 @@
 <html>
 <head>
 <link href="../css/bootstrap.css" rel="stylesheet">
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.dataTables.js" type="text/javascript"></script>
 <title>Kenscio</title>
 
 <script>
 	function load_view() {
-		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/display.jsp" ></object>';
+		$("#content").load("/Login/jsp/display.jsp");
 	}
 	function load_home() {
-		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/welcomeUser.jsp"></object>';
+		$("#content").load("/Login/jsp/welcomeUser.jsp");
 	}
 
 	function load_welcome() {
-		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/html/logout.html" ></object>';
+		$("#content").load("/Login/html/logout.html");
 	}
 
 	function load_upload() {
-		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/upload.jsp" ></object>';
+		$("#content").load("/Login/jsp/upload.jsp");
 	}
 
 	function load_jsonParsing() {
-		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/jsonParsing.jsp" ></object>'
+		$("#content").load("/Login/jsp/jsonParsing.jsp");
 	}
 </script>
 
@@ -49,7 +51,7 @@ window.onunload=function(){void(0)}
 	<div class="page-header">
 		<h1>Welcome</h1>
 	</div>
-	<!-- End Header -->
+	<!-- End Header<!-- <script>
 
 	<!-- Begin Naviagtion -->
 	<div class="navigation">
@@ -83,24 +85,5 @@ window.onunload=function(){void(0)}
 		}
 	%>
 </body>
-<script>
-	function load_view() {
-		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/display.jsp" ></object>';
-	}
-	function load_home() {
-		document.getElementById("content").innerHTML = '<object type="text/html"width="100%" height="100%" data="/Login/jsp/welcomeUser.jsp"></object>';
-	}
 
-	function load_welcome() {
-		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/html/logout.html" ></object>';
-	}
-
-	function load_upload() {
-		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/upload.jsp" ></object>';
-	}
-
-	function load_jsonParsing() {
-		document.getElementById("content").innerHTML = '<object type="text/html" width="100%" height="100%" data="/Login/jsp/jsonParsing.jsp" ></object>'
-	}
-</script>
 </html>
