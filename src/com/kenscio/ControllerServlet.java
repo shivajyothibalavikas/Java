@@ -1,18 +1,14 @@
 package com.kenscio;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.json.JsonException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,36 +22,21 @@ import org.json.*;
 import com.kenscio.database.DatabaseClass;
 import com.kenscio.service.Run;
 import com.kenscio.service.Service;
-import com.kenscio.to.Books;
 import com.kenscio.util.DBConnect;
 import com.kenscio.util.MD5;
-import com.kenscio.util.DataTableParameters;
 
 public class ControllerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	Connection con = null;
 	Service service = null;
-	
-/*	private String GLOBAL_SEARCH_TERM;
-	 private String COLUMN_NAME;
-	 private String DIRECTION;
-	 private int INITIAL;
-	 private int RECORD_SIZE;
-	 private String ID_SEARCH_TERM,NAME_SEARCH_TERM,CATEGORY_SEARCH_TERM,ISBN_SEARCH_TERM;
-*/
 	public void init(ServletConfig conf) throws ServletException {
-<<<<<<< HEAD
-		/*Run run = new Run();
+
+/*		Run run = new Run();
 		Thread t1 = new Thread(run);
 		t1.start();
 		System.out.println("Thread started successfully");*/
-=======
-		/*
-		 * Run run = new Run(); Thread t1 = new Thread(run); t1.start();
-		 * System.out.println("Thread started successfully");
-		 */
->>>>>>> 07a02e60379fa8129d74963378ae94fd3e9e061b
+
 		try {
 			con = DBConnect.getConnection();
 		} catch (SQLException e) {

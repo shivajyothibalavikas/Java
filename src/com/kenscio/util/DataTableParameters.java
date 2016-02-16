@@ -1,13 +1,8 @@
 package com.kenscio.util;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.json.JsonObject;
 
 import org.json.JSONObject;
 
-import com.kenscio.to.Books;
 
 public class DataTableParameters {
 	
