@@ -1,9 +1,12 @@
 package com.kenscio;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -17,24 +20,33 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
+import org.json.*;
 import com.kenscio.database.DatabaseClass;
 import com.kenscio.service.Run;
 import com.kenscio.service.Service;
+import com.kenscio.to.Books;
 import com.kenscio.util.DBConnect;
 import com.kenscio.util.MD5;
+import com.kenscio.util.DataTableParameters;
 
 public class ControllerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	Connection con = null;
 	Service service = null;
-
+	
+/*	private String GLOBAL_SEARCH_TERM;
+	 private String COLUMN_NAME;
+	 private String DIRECTION;
+	 private int INITIAL;
+	 private int RECORD_SIZE;
+	 private String ID_SEARCH_TERM,NAME_SEARCH_TERM,CATEGORY_SEARCH_TERM,ISBN_SEARCH_TERM;
+*/
 	public void init(ServletConfig conf) throws ServletException {
-		Run run = new Run();
+		/*Run run = new Run();
 		Thread t1 = new Thread(run);
 		t1.start();
-		System.out.println("Thread started successfully");
+		System.out.println("Thread started successfully");*/
 		try {
 			con = DBConnect.getConnection();
 		} catch (SQLException e) {
@@ -95,6 +107,42 @@ public class ControllerServlet extends HttpServlet {
 				}
 
 			}
+		}
+		
+		
+		/* grid view displaying*/
+		
+		else if (strpath.equals("/jsp/display.do")) {
+			System.out.println("inside display");
+			
+			 JSONObject jsonResult = new JSONObject();
+
+			  int totalRecords= -1;
+			  try {
+			   totalRecords = DatabaseClass.getTotalRecordCount();
+			  } catch (SQLException e1) {
+			   e1.printStackTrace();
+			  }
+			 
+			  
+			 
+			  try {
+				jsonResult = DatabaseClass.getBookList(totalRecords, req);
+				System.out.println("JSON RESULT:"+jsonResult);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			 
+			  resp.setContentType("application/json");
+			  resp.setHeader("Cache-Control", "no-store");
+			  
+			  
+			  try {
+				resp.getWriter().print(jsonResult);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		}
 
 		/* For login checking */

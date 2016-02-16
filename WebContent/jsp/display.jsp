@@ -1,58 +1,44 @@
-<%@page import="java.util.Map"%>
-<%@page import="java.util.HashMap"%>
-<%@ page import="com.kenscio.to.Books"%>
-<%@ page import="com.kenscio.database.DatabaseClass"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page
+	import="java.util.*"%><!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>GridView for Java - jQuery Data Table</title>
-<link href="../css/jquery.dataTables.css" rel="stylesheet" type="text/css" media="all" />
-<script src="../js/jquery.js" type="text/javascript"></script>
-<script src="../js/jquery.dataTables.js" type="text/javascript"></script>
-<script>
-	$(document).ready(function() {
-		$("#companies").dataTable({
-			
-		});
-	});
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+	var basePath = '${pageContext.request.contextPath}';
 </script>
+ 
+<link type="text/css" rel="stylesheet" media="all" href="${pageContext.request.contextPath}/css/demo_table_jui.css" >
+<link type="text/css" rel="stylesheet" media="all" href="${pageContext.request.contextPath}/css/jquery-ui-1.8.11.custom.css" >
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.5.2.min.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ajax-form-plugin/jquery.form.js" ></script>	
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.11.custom.min.js" ></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/datatable.js"></script>	
+
+<title>Student Form</title>
 </head>
-<body id="dt_example">
-	<div id="container">
-		<h1>Gridview for Java using jQuery DataTable plugin</h1>
-		<div id="demo_jui">
-			<table id="companies" class="display">
-				<thead>
-					<tr>
-						<th><u>Book ID</u></th>
-						<th><u>Book Name</u></th>
-						<th><u>Book Category</u></th>
-						<th><u>Book ISBN</u></th>
-					</tr>
-				</thead>
-				<tbody>
-					<%!Map<Long, Books> books = new HashMap<Long, Books>();%>
-					<%
-						books = DatabaseClass.getBook();
-					%>
-					<%
-						for (Books c : books.values()) {
-					%>
-					<tr>
-						<td><%=c.getBook_id()%></td>
-						<td><%=c.getBook_name()%></td>
-						<td><%=c.getBook_category()%></td>
-						<td><%=c.getISBN()%></td>
-					</tr>
-					<%
-						}
-					%>
-				</tbody>
-			</table>
-		</div>
+<body>
+<form>
+	<div class="titleDiv">Book List</div>
+	<div class="clearfix"></div>
+	
+	<div class="formDiv">
+		<table width="100%" border="0" margin="0" padding="0" 
+			class="dataTables_wrapper" id="bookListTable">
+			<thead>
+				<tr>
+					<th>BOOK_ID</th>
+					<th>BOOK_NAME</th>
+					<th>BOOK_CATEGORY</th>
+					<th>BOOK_ISBN</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
 	</div>
+</form>
 </body>
 </html>
