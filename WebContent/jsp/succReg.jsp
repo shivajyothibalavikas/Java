@@ -15,7 +15,7 @@
 	<h1>You have successfully registered!!</h1>
 	<br>
 	<a href='/Login/html/login.html'>click here to login</a>
-	<div class="navbar-fixed-bottom">
+	<div class="panel-footer">
 		<p>Copyright &copy; kenscio.com</p>
 	</div>
 </body>

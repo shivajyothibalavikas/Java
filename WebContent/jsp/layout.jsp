@@ -5,58 +5,72 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="../css/bootstrap.css" rel="stylesheet">
-<script src="../js/jquery.js" type="text/javascript"></script>
-<script src="../js/jquery.dataTables.js" type="text/javascript"></script>
+<link href="/Login/css/bootstrap.css" rel="stylesheet">
+<script src="/Login/js/jquery.js" type="text/javascript"></script>
 <title>Kenscio</title>
 
 <script>
 	function load_view() {
-		$(".nav a").on("click", function(){
-			   $(".nav").find(".active").removeClass("active");
-			   $(this).parent().addClass("active");
-			});
+		$(".nav a").on("click", function() {
+			$(".nav").find(".active").removeClass("active");
+			$(this).parent().addClass("active");
+		});
 		$("#content").load("/Login/jsp/display.jsp");
 	}
 	function load_home() {
-		$(".nav a").on("click", function(){
-			   $(".nav").find(".active").removeClass("active");
-			   $(this).parent().addClass("active");
-			});
+		$(".nav a").on("click", function() {
+			$(".nav").find(".active").removeClass("active");
+			$(this).parent().addClass("active");
+		});
 		$("#content").load("/Login/jsp/welcomeUser.jsp");
 	}
 
 	function load_welcome() {
+		$(".nav a").on("click", function() {
+			$(".nav").find(".active").removeClass("active");
+			$(this).parent().addClass("active");
+		});
 		$("#content").load("/Login/html/logout.html");
 	}
 
 	function load_upload() {
-		$(".nav a").on("click", function(){
-			   $(".nav").find(".active").removeClass("active");
-			   $(this).parent().addClass("active");
-			});
+		$(".nav a").on("click", function() {
+			$(".nav").find(".active").removeClass("active");
+			$(this).parent().addClass("active");
+		});
 		$("#content").load("/Login/jsp/upload.jsp");
 	}
 
 	function load_jsonParsing() {
+		$(".nav a").on("click", function() {
+			$(".nav").find(".active").removeClass("active");
+			$(this).parent().addClass("active");
+		});
 		$("#content").load("/Login/jsp/jsonParsing.jsp");
 	}
 </script>
 
 <script type='text/javascript'>
-window.history.forward();
-function noBack() {window.history.forward(); }
-window.onload='noBack()';
-window.onpageshow=function(evt){if(evt.persisted)noBack()}
-window.onunload=function(){void(0)}
- </script>
+	window.history.forward();
+	function noBack() {
+		window.history.forward();
+	}
+	window.onload = 'noBack()';
+	window.onpageshow = function(evt) {
+		if (evt.persisted)
+			noBack()
+	}
+	window.onunload = function() {
+		void (0)
+	}
+</script>
 
 </head>
 
 <body>
-	<%		//session = request.getSession();
-			if(session.getAttribute("name")!=null)
-			{
+	<%
+		//session = request.getSession();
+		if (session.getAttribute("name") != null) {
 	%>
 
 	<!-- Begin Header -->
@@ -72,19 +86,18 @@ window.onunload=function(){void(0)}
 	<!-- End Naviagtion -->
 
 	<!-- Begin Wrapper -->
-	<div class="container" id="content">
+	<div class="container-fluid" id="content">
 		<%@ include file="/jsp/welcomeUser.jsp"%>
 		<!-- End Content -->
 	</div>
 
 	<!-- Begin Footer -->
-	<div class="navbar-fixed-bottom">
+	<div class="panel-footer">
 		<p>Copyright &copy; kenscio.com</p>
 	</div>
 	<!-- End Footer -->
 	<!-- End Wrapper -->
 	<%
-
 		} else {
 	%>
 

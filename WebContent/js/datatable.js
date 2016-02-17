@@ -3,13 +3,12 @@ var studentTable;
 jQuery(document).ready(function() {
 
 	studentTable = jQuery('#bookListTable').dataTable({
-	
-		"bJQueryUI" : true,
+		
 		"sPaginationType" : "full_numbers",
 		"iDisplayLength": 10,
 		"bProcessing" : true,
 		"bServerSide" : true,
-		"sAjaxSource" : "/Login/js/display.do",
+		"sAjaxSource" : "/Login/jsp/display.do",
 			
 		"aoColumns" : 
 		   [ {"bSearchable" : false,	"bVisible" : false,	"asSorting" : [ "asc" ]	},

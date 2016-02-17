@@ -9,16 +9,22 @@
 <link href="../css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
-<%
-int err =(int) request.getAttribute("javax.servlet.error.status_code");%>
-<div class="page-header">
+	<%
+		int err = (int) request.getAttribute("javax.servlet.error.status_code");
+	%>
+	<div class="page-header">
 		<h1>Welcome</h1>
 	</div>
-<h2><strong>Sorry!!!! Error Occured while handling your request.</strong></h2>
-<h3>ERROR CODE:<%=err %></h3>
-<h3>CAUSE:<%=request.getAttribute("javax.servlet.error.message") %></h3><br>
-<a href="/Login/jsp/layout.jsp" > Go back</a>
-<div class="navbar-fixed-bottom">
+	<h2>
+		<strong>Sorry!!!! Error Occured while handling your request.</strong>
+	</h2>
+	<h3>
+		ERROR CODE:<%=err%></h3>
+	<h3>
+		CAUSE:<%=request.getAttribute("javax.servlet.error.message")%></h3>
+	<br>
+	<a href="/Login/jsp/layout.jsp"> Go back</a>
+	<div class="panel-footer">
 		<p>Copyright &copy; kenscio.com</p>
 	</div>
 </body>

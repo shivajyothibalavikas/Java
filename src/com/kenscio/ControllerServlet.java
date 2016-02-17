@@ -110,7 +110,7 @@ public class ControllerServlet extends HttpServlet {
 		
 		/* grid view displaying*/
 		
-		else if (strpath.equals("/html/display.do")) {
+		else if (strpath.equals("/jsp/display.do")) {
 			System.out.println("inside display");
 			
 			 JSONObject jsonResult = new JSONObject();

@@ -5,6 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="../css/bootstrap.css" rel="stylesheet">
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 <style type="text/css">
 .button {
 	width: 105px;
@@ -19,7 +22,6 @@
 	color: green;
 }
 </style>
-<link href="../css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 	
