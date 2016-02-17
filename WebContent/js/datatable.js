@@ -9,7 +9,7 @@ jQuery(document).ready(function() {
 		"iDisplayLength": 10,
 		"bProcessing" : true,
 		"bServerSide" : true,
-		"sAjaxSource" : "display.do",
+		"sAjaxSource" : "/Login/js/display.do",
 			
 		"aoColumns" : 
 		   [ {"bSearchable" : false,	"bVisible" : false,	"asSorting" : [ "asc" ]	},

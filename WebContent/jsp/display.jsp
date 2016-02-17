@@ -7,15 +7,14 @@
 	var basePath = '${pageContext.request.contextPath}';
 </script>
  
-<link type="text/css" rel="stylesheet" media="all" href="${pageContext.request.contextPath}/css/demo_table_jui.css" >
-<link type="text/css" rel="stylesheet" media="all" href="${pageContext.request.contextPath}/css/jquery-ui-1.8.11.custom.css" >
+<link type="text/css" rel="stylesheet" media="all" href="../css/demo_table_jui.css" >
+<link type="text/css" rel="stylesheet" media="all" href="../css/jquery-ui-1.8.11.custom.css" >
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.5.2.min.js" ></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ajax-form-plugin/jquery.form.js" ></script>	
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.11.custom.min.js" ></script>
+<script type="text/javascript" src="../js/jquery-1.5.2.min.js" ></script>
+<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.11.custom.min.js" ></script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/datatable.js"></script>	
+<script type="text/javascript" src="../js/datatable.js"></script>	
 
 <title>Student Form</title>
 </head>

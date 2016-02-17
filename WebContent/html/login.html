@@ -4,20 +4,30 @@
 <title>Login Page</title>
 
 <link href="../css/bootstrap.css" rel="stylesheet">
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"
+	rel="stylesheet">
 
 <script type='text/javascript'>
-window.history.forward();
-function noBack() {window.history.forward(); }
-window.onload='noBack()';
-window.onpageshow=function(evt){if(evt.persisted)noBack()}
-window.onunload=function(){void(0)}
+	window.history.forward();
+	function noBack() {
+		window.history.forward();
+	}
+	window.onload = 'noBack()';
+	window.onpageshow = function(evt) {
+		if (evt.persisted)
+			noBack()
+	}
+	window.onunload = function() {
+		void (0)
+	}
 </script>
 
 </head>
 
 <body>
 
-	<div class="page-header"> 
+	<div class="page-header">
 		<h1>Welcome</h1>
 	</div>
 

@@ -12,9 +12,17 @@
 
 <script>
 	function load_view() {
+		$(".nav a").on("click", function(){
+			   $(".nav").find(".active").removeClass("active");
+			   $(this).parent().addClass("active");
+			});
 		$("#content").load("/Login/jsp/display.jsp");
 	}
 	function load_home() {
+		$(".nav a").on("click", function(){
+			   $(".nav").find(".active").removeClass("active");
+			   $(this).parent().addClass("active");
+			});
 		$("#content").load("/Login/jsp/welcomeUser.jsp");
 	}
 
@@ -23,6 +31,10 @@
 	}
 
 	function load_upload() {
+		$(".nav a").on("click", function(){
+			   $(".nav").find(".active").removeClass("active");
+			   $(this).parent().addClass("active");
+			});
 		$("#content").load("/Login/jsp/upload.jsp");
 	}
 
